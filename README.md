@@ -1,0 +1,2 @@
+# toolchainkit
+This is the integrated warehouse a personal edition specifically used for the rapid development of small tools, anyone can use free of charge and modified. As with third party copyright conflict, by coincidence, can inform, delete immediately. The author on the use of the document and source caused by any person and the third party company loss, almost is not responsible for, the author
