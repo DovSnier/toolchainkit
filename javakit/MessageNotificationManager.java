@@ -27,7 +27,7 @@ import java.util.Set;
 import android.util.Log;
 
 /**
- * 
+ * This kind of independent design method is deprecated, can be used as references for additional resources to learn.
  * @ClassName: MessageNotificationManager
  * @author lzw
  * @date 2015-2-6 上午11:42:24
