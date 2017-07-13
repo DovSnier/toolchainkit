@@ -5,7 +5,7 @@ import android.content.Context;
 /**
  * Created by Administrator on 2016/11/7.
  */
-public class DebugUtils {
+public class D {
 
     public static String hook(Context context, String name) {
         return MockServer.getInstance().obtainDefaultMock(context, name);
