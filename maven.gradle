@@ -1,0 +1,64 @@
+apply plugin: 'maven'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('gradle.properties').newDataInputStream())
+def LOCAL_MAVEN_REPO_URL = properties.getProperty("LOCAL_MAVEN_REPO_URL")
+def POM_GROUP_ID = properties.getProperty("POM_GROUP_ID")
+def POM_ARTIFACT_ID = properties.getProperty("POM_ARTIFACT_ID")
+def POM_VERSION = properties.getProperty("POM_VERSION")
+def POM_NAME = properties.getProperty("POM_NAME")
+def POM_DESCRIPTION = properties.getProperty("POM_DESCRIPTION")
+def POM_SITE_URL = properties.getProperty("POM_SITE_URL")
+def POM_GIT_URL = properties.getProperty("POM_GIT_URL")
+def POM_DEVELOPER_ID = properties.getProperty("POM_DEVELOPER_ID")
+def POM_DEVELOPER_NAME = properties.getProperty("POM_DEVELOPER_NAME")
+def POM_DEVELOPER_EMAIL = properties.getProperty("POM_DEVELOPER_EMAIL")
+def POM_LICENSE_NAME = properties.getProperty("POM_LICENSE_NAME")
+def POM_LICENSE_URL = properties.getProperty("POM_LICENSE_URL")
+
+task androidJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    classifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives androidSourcesJar
+    archives androidJavadocsJar
+}
+
+uploadArchives {
+    repositories {
+        println "Maven Parameter(uploadArchives) is:"
+        println LOCAL_MAVEN_REPO_URL
+        println POM_GROUP_ID
+        println POM_ARTIFACT_ID
+        println POM_VERSION
+        mavenDeployer {
+            repository(url: LOCAL_MAVEN_REPO_URL) {
+                authentication(userName: "", password: "")
+            }
+            pom.groupId = POM_GROUP_ID
+            pom.artifactId = POM_ARTIFACT_ID
+            pom.version = POM_VERSION
+
+            pom.project {
+                licenses {
+                    license {
+                        name POM_LICENSE_NAME
+                        url POM_LICENSE_URL
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,1 @@
+gradle  --stacktrace --info uploadArchives > uploadArchives.log

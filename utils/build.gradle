@@ -1,22 +1,14 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-
-version = "0.0.3"
-group = "com.dvsnier.utils"
-
-def siteUrl = 'https://github.com/DovSnier/toolchainkit'
-def gitUrl = 'git@github.com:DovSnier/toolchainkit.git'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         minSdkVersion 10
         targetSdkVersion 26
         versionCode 5
-        versionName version
+        versionName '0.0.3'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -38,75 +30,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
 }
 
-install {
-    repositories.mavenInstaller {
-        pom {
-            project {
-                packaging 'aar'
-                name 'utilsLib'
-                description 'the android utils lib.'
-                url siteUrl
+apply from: '../maven.gradle'
 
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
 
-                developers {
-                    developer {
-                        id 'dovsnier'
-                        name 'dovsnier'
-                        email '3086722095@qq.com'
-                    }
-                }
-
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-                }
-            }
-        }
-    }
-}
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    failOnError false
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
-
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-
-    configurations = ['archives']
-    pkg {
-        repo = "AndroidComponent"
-        name = "utils"
-        userOrg = 'dovsnier'
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
-        publish = true
-    }
-}
