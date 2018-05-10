@@ -1,21 +1,5 @@
 apply plugin: 'maven'
 
-Properties properties = new Properties()
-properties.load(project.rootProject.file('gradle.properties').newDataInputStream())
-def LOCAL_MAVEN_REPO_URL = properties.getProperty("LOCAL_MAVEN_REPO_URL")
-def POM_GROUP_ID = properties.getProperty("POM_GROUP_ID")
-def POM_ARTIFACT_ID = properties.getProperty("POM_ARTIFACT_ID")
-def POM_VERSION = properties.getProperty("POM_VERSION")
-def POM_NAME = properties.getProperty("POM_NAME")
-def POM_DESCRIPTION = properties.getProperty("POM_DESCRIPTION")
-def POM_SITE_URL = properties.getProperty("POM_SITE_URL")
-def POM_GIT_URL = properties.getProperty("POM_GIT_URL")
-def POM_DEVELOPER_ID = properties.getProperty("POM_DEVELOPER_ID")
-def POM_DEVELOPER_NAME = properties.getProperty("POM_DEVELOPER_NAME")
-def POM_DEVELOPER_EMAIL = properties.getProperty("POM_DEVELOPER_EMAIL")
-def POM_LICENSE_NAME = properties.getProperty("POM_LICENSE_NAME")
-def POM_LICENSE_URL = properties.getProperty("POM_LICENSE_URL")
-
 task androidJavadocs(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
@@ -36,29 +20,53 @@ artifacts {
     archives androidJavadocsJar
 }
 
-uploadArchives {
+uploadArchives() {
     repositories {
-        println "Maven Parameter(uploadArchives) is:"
-        println LOCAL_MAVEN_REPO_URL
-        println POM_GROUP_ID
-        println POM_ARTIFACT_ID
-        println POM_VERSION
         mavenDeployer {
             repository(url: LOCAL_MAVEN_REPO_URL) {
-                authentication(userName: "", password: "")
+                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
             }
             pom.groupId = POM_GROUP_ID
             pom.artifactId = POM_ARTIFACT_ID
             pom.version = POM_VERSION
 
             pom.project {
+                name POM_NAME
+                packaging POM_PACKAGING
+                description POM_DESCRIPTION
+                url POM_SITE_URL
+
+                scm {
+                    url POM_SCM_URL
+                    connection POM_SCM_CONNECTION
+                    developerConnection POM_SCM_DEV_CONNECTION
+                }
+
                 licenses {
                     license {
                         name POM_LICENSE_NAME
                         url POM_LICENSE_URL
+                        distribution POM_LICENSE_DISTRIBUTION
+                    }
+                }
+
+                developers {
+                    developer {
+                        id POM_DEVELOPER_ID
+                        name POM_DEVELOPER_NAME
                     }
                 }
             }
         }
     }
 }
+
+task debugPomInfo() << {
+    println "Maven Parameter(uploadArchives) is:"
+    println String.format('\t\t%1$s: %2$s', "MAVEN_REPO_URL", LOCAL_MAVEN_REPO_URL)
+    println String.format('\t\t%1$s: %2$s', "POM_GROUP_ID", POM_GROUP_ID)
+    println String.format('\t\t%1$s: %2$s', "POM_ARTIFACT_ID", POM_ARTIFACT_ID)
+    println String.format('\t\t%1$s: %2$s', "POM_VERSION", POM_VERSION)
+    println String.format('\t\tcompile \'%1$s:%2$s:%3$s\'', POM_GROUP_ID, POM_ARTIFACT_ID, POM_VERSION)
+}
+

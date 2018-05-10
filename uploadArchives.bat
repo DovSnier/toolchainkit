@@ -1,1 +1,2 @@
-gradle  --stacktrace --info uploadArchives > uploadArchives.log
+@echo off
+gradle --stacktrace --info debugPomInfo uploadArchives > uploadArchives.log
