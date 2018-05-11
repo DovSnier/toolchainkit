@@ -30,7 +30,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
 }
 
-apply from: '../maven.gradle'
-//apply from: '../gradle-mvn-push.gradle'
+apply from: '../scm.gradle'
 
 
