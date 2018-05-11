@@ -23,9 +23,13 @@ artifacts {
 uploadArchives() {
     repositories {
         mavenDeployer {
-            repository(url: LOCAL_MAVEN_REPO_URL) {
+            repository(url: MAVEN_REPO_URL) {
                 authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
             }
+            snapshotRepository(url: MAVEN_SNAPSHOT_REPO_URL) {
+                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+            }
+
             pom.groupId = POM_GROUP_ID
             pom.artifactId = POM_ARTIFACT_ID
             pom.version = POM_VERSION
@@ -61,12 +65,15 @@ uploadArchives() {
     }
 }
 
-task debugPomInfo() << {
-    println "Maven Parameter(uploadArchives) is:"
-    println String.format('\t\t%1$s: %2$s', "MAVEN_REPO_URL", LOCAL_MAVEN_REPO_URL)
-    println String.format('\t\t%1$s: %2$s', "POM_GROUP_ID", POM_GROUP_ID)
-    println String.format('\t\t%1$s: %2$s', "POM_ARTIFACT_ID", POM_ARTIFACT_ID)
-    println String.format('\t\t%1$s: %2$s', "POM_VERSION", POM_VERSION)
-    println String.format('\t\tcompile \'%1$s:%2$s:%3$s\'', POM_GROUP_ID, POM_ARTIFACT_ID, POM_VERSION)
+task debugPomInfo() {
+    doLast {
+        println "Maven Parameter(uploadArchives) is:"
+        println String.format('\t\t%1$s: %2$s', "MAVEN_REPO_URL", MAVEN_REPO_URL)
+        println String.format('\t\t%1$s: %2$s', "MAVEN_SNAPSHOT_REPO_URL", MAVEN_SNAPSHOT_REPO_URL)
+        println String.format('\t\t%1$s: %2$s', "POM_GROUP_ID", POM_GROUP_ID)
+        println String.format('\t\t%1$s: %2$s', "POM_ARTIFACT_ID", POM_ARTIFACT_ID)
+        println String.format('\t\t%1$s: %2$s', "POM_VERSION", POM_VERSION)
+        println String.format('\t\tcompile \'%1$s:%2$s:%3$s\'', POM_GROUP_ID, POM_ARTIFACT_ID, POM_VERSION)
+    }
 }
 
