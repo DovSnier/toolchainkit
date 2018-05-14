@@ -1,6 +1,4 @@
 @echo off
-@echo "bintrayInstall..."
-gradle --stacktrace --info install > bintrayInstall.log
-@echo "bintrayUpload..."
-gradle --stacktrace --info bintrayUpload > bintrayUpload.log
+@echo "bintray execute..."
+gradlew --stacktrace --info clean install bintrayUpload > bintray.log
 @exit
