@@ -2,11 +2,14 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 afterEvaluate { projects ->
-    install {
+    install() {
         repositories.mavenInstaller {
             pom {
                 project {
                     packaging POM_PACKAGING
+                    groupId POM_GROUP_ID
+                    artifactId POM_ARTIFACT_ID
+                    version = POM_VERSION
                     name POM_NAME
                     description POM_DESCRIPTION
                     url POM_SITE_URL
@@ -66,6 +69,9 @@ afterEvaluate { projects ->
         pkg {
             repo = BINTRAY_PKG_REPO
             name = BINTRAY_PKG_NAME
+            desc = POM_DESCRIPTION
+            if (hasProperty('BINTRAY_PKG_ISSUE_TRACKER_URL'))
+                issueTrackerUrl = BINTRAY_PKG_ISSUE_TRACKER_URL
             userOrg = BINTRAY_PKG_USER_ORG
             websiteUrl = POM_SITE_URL
             vcsUrl = POM_GIT_URL
