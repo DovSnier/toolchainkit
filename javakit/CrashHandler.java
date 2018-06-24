@@ -1,11 +1,9 @@
-/**
- * 
- */
-package com.knighteam.utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.lang.Thread.UncaughtExceptionHandler;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 
 import android.annotation.SuppressLint;
@@ -14,7 +12,6 @@ import android.os.Environment;
 import android.os.Looper;
 import android.widget.Toast;
 
-import com.knighteam.constants.Constants;
 
 /**
  * <pre>
@@ -25,11 +22,11 @@ import com.knighteam.constants.Constants;
  * @version 1.0.0
  * @since jdk 1.7
  */
-public class CrashHandler implements UncaughtExceptionHandler {
+public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
 	public static final boolean DEBUG = Constants.DEBUG; // the set debug mode
 	private final String PATH_EXTERNAL_PREFIX = Constants.PathConstants.PATH_EXTERNAL_PREFIX; // the default app package name
-	private String directory = "";
+	private static String directory = "";
 	private Thread.UncaughtExceptionHandler mDefaultHandler;
 	private Context context;
 	private static CrashHandler crashHandler;
@@ -61,8 +58,8 @@ public class CrashHandler implements UncaughtExceptionHandler {
 	 */
 	public void init(Context context) {
 		this.context = context;
-		mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
 		Thread.setDefaultUncaughtExceptionHandler(this);
+		mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
 
 		makeFile(); // TODO make file or directory
 	}
@@ -82,11 +79,11 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		}
 		File file = new File(appAbsolutePath, "crash");
 		if (!file.exists()) {
-			file.mkdir();
+			file.mkdirs();
 		}
 		File fileDate = new File(file, getPrintToDirectoryTime());
 		if (!fileDate.exists()) {
-			fileDate.mkdir();
+			fileDate.mkdirs();
 		}
 		directory = fileDate.getAbsolutePath();
 		LogUtils.i(CrashHandler.class, "the current crash path is " + directory);
@@ -98,7 +95,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			mDefaultHandler.uncaughtException(thread, ex);
 		} else {
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 			}
 			android.os.Process.killProcess(android.os.Process.myPid());
@@ -119,22 +116,34 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		if (ex == null) {
 			return false;
 		}
-		final StackTraceElement[] stack = ex.getStackTrace();
+		StringWriter writer = new StringWriter();
+		PrintWriter printWriter = new PrintWriter(writer);
+		ex.printStackTrace(printWriter);
+		Throwable cause = ex.getCause();
+		cause.printStackTrace(printWriter);
+		printWriter.close();
+		final String result = writer.toString();
 		final String message = ex.getMessage();
+
 		new Thread() {
 
 			@Override
 			public void run() {
 				Looper.prepare();
-				Toast.makeText(context, "程序出错啦:", Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "程序出错啦!", Toast.LENGTH_LONG).show();
 				String fileName = "crash_" + getPrintToFileTime() + ".log";
 				File file = new File(directory, fileName);
+				if (!file.exists()) {
+					try {
+						file.createNewFile();
+					} catch (IOException e) {
+					}
+				}
+
 				try {
 					FileOutputStream fos = new FileOutputStream(file, true);
-					fos.write(message.getBytes());
-					for (int i = 0; i < stack.length; i++) {
-						fos.write(stack.toString().getBytes());
-					}
+					fos.write(("=>" + "date = " + DateUtils.getCurrrentTime() + "\n" + "=>msgs = " + message).getBytes());
+					fos.write(result.getBytes());
 					fos.flush();
 					fos.close();
 				} catch (Exception e) {
@@ -143,7 +152,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			}
 
 		}.start();
-		return false;
+		return true;
 	}
 
 	/**
@@ -157,7 +166,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 	@SuppressLint("SimpleDateFormat")
 	public static String getPrintToFileTime() {
 		String date = "";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MMdd_hhmm_ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MMdd_hhmm");
 		date = sdf.format(System.currentTimeMillis());
 		return date;
 	}
