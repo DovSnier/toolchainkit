@@ -1,0 +1,15 @@
+task execute() {
+    def SCM_FLAG = getProperty('SCM_FLAG')
+    def SCM_FLAG_NAME
+    if (1 == SCM_FLAG) {
+        SCM_FLAG_NAME = 'bintray'
+        apply from: '../bintray.gradle'
+    } else if (2 == SCM_FLAG) {
+        SCM_FLAG_NAME = 'gradle-mvn-push'
+        apply from: '../gradle-mvn-push.gradle'
+    } else {
+        SCM_FLAG_NAME = 'maven'
+        apply from: '../maven.gradle'
+    }
+    println "the current SCM_FLAG($SCM_FLAG) that is $SCM_FLAG_NAME"
+}
