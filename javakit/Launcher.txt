@@ -1,0 +1,25 @@
+/**
+ * @author dovsnier
+ * @version 1.0.0
+ * @since jdk 1.7
+ */
+public class Main {
+
+	/**
+	 *  <br>2015-4-17
+	 * @version 0.0.1
+	 *  @param args
+	 */
+	public static void main(String[] args) {
+		URL[] urls=sun.misc.Launcher.getBootstrapClassPath().getURLs();
+	    for (int i = 0; i < urls.length; i++) {
+	      System.out.println(urls.toExternalform());
+	    }
+	}
+
+	public static void printSystemProperty(){
+		System.out.println(System.getProperty("java.ext.dirs"));
+		ClassLoader extensionClassloader = ClassLoader.getSystemClassLoader().getParent();
+		System.out.println("the parent of extension classloader : " + extensionClassloader.getParent());
+	}
+}
