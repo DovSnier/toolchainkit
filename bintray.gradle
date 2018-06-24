@@ -1,0 +1,89 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+afterEvaluate { projects ->
+    install() {
+        repositories.mavenInstaller {
+            pom {
+                project {
+                    packaging POM_PACKAGING
+                    groupId POM_GROUP_ID
+                    artifactId POM_ARTIFACT_ID
+                    version = POM_VERSION
+                    name POM_NAME
+                    description POM_DESCRIPTION
+                    url POM_SITE_URL
+                    println String.format('\t\tcompile \'%1$s:%2$s:%3$s\'', POM_GROUP_ID, POM_ARTIFACT_ID, POM_VERSION)
+
+                    licenses {
+                        license {
+                            name POM_LICENSE_NAME
+                            url POM_LICENSE_URL
+                            distribution POM_LICENSE_DISTRIBUTION
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id POM_DEVELOPER_ID
+                            name POM_DEVELOPER_NAME
+                            email POM_DEVELOPER_EMAIL
+                        }
+                    }
+
+                    scm {
+                        connection POM_GIT_URL
+                        developerConnection POM_GIT_URL
+                        url POM_SITE_URL
+                    }
+                }
+            }
+        }
+    }
+
+    task sourcesJar(type: Jar) {
+        from android.sourceSets.main.java.srcDirs
+        classifier = 'sources'
+    }
+
+    task javadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+        failOnError false
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives javadocJar
+        archives sourcesJar
+    }
+
+    bintray {
+        user = BINTRAY_USER
+        key = BINTRAY_APIKEY
+
+        configurations = ['archives']
+        pkg {
+            repo = BINTRAY_PKG_REPO
+            name = POM_NAME
+            desc = POM_DESCRIPTION
+            if (hasProperty('BINTRAY_PKG_ISSUE_TRACKER_URL'))
+                issueTrackerUrl = BINTRAY_PKG_ISSUE_TRACKER_URL
+            userOrg = BINTRAY_PKG_USER_ORG
+            websiteUrl = POM_SITE_URL
+            vcsUrl = POM_GIT_URL
+            licenses = [POM_LICENSE_ALIAS]
+            publish = BINTRAY_PKG_PUBLISH
+
+            version {
+
+                name = POM_VERSION
+                vcsTag = POM_VERSION
+            }
+        }
+    }
+}

@@ -67,7 +67,7 @@ public class StringUtils {
 
     /**
      * <p>
-     * judge a map < k, v > set whether the object is empty <br>
+     * judge a map &lt; k, v &gt; set whether the object is empty <br>
      * 2014-11-18 下午4:53:59
      *
      * @param map the collection object
