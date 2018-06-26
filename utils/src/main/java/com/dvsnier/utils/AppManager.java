@@ -1,13 +1,14 @@
-
-import java.util.Stack;
+package com.dvsnier.utils;
 
 import android.app.Activity;
 import android.content.Context;
 
+import java.util.Stack;
+
 /**
  * 
  * <pre>
- * AppManager
+ * com.dvsnier.utils.AppManager
  * </pre>
  * 
  * @author lizw
