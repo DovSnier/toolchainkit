@@ -1,10 +1,10 @@
-﻿package com.dvsnier.utils;
+package com.dvsnier.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * PreferencesUtils, easy to get or put data
+ * SharedPreferencesUtil, easy to get or put data
  * <ul>
  * <strong>Preference Name</strong>
  * <li>you can change preference name by {@link #PREFERENCE_NAME}</li>
@@ -28,7 +28,7 @@ import android.content.SharedPreferences;
  *
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2013-3-6
  */
-public class PreferencesUtils {
+public class SharedPreferencesUtil {
 
     private final static String PREFERENCE_NAME = "shared_pref";
 
