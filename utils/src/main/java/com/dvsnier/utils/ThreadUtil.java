@@ -11,8 +11,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class ThreadUtil {
 
-    private final static int CORE_POOL_SIZE = 1;
-    private final static int DEFAULT_DEQUE_CAPACITY = 10;
+    private final static int CORE_POOL_SIZE = Runtime.getRuntime().availableProcessors();
+    private final static int MAXIMUM_POOL_SIZE = CORE_POOL_SIZE * 3;
+    private final static int DEFAULT_DEQUE_CAPACITY = MAXIMUM_POOL_SIZE * 5;
     private static LinkedBlockingDeque workQueue = new LinkedBlockingDeque(DEFAULT_DEQUE_CAPACITY);
     private static ExecutorService executorService;
 
@@ -42,6 +43,6 @@ public class ThreadUtil {
 
     private static void newInstance() {
         //noinspection unchecked
-        executorService = new ThreadPoolExecutor(CORE_POOL_SIZE, Runtime.getRuntime().availableProcessors() + 1, 60, TimeUnit.SECONDS, workQueue);
+        executorService = new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, 60, TimeUnit.SECONDS, workQueue, new ThreadPoolExecutor.DiscardPolicy());
     }
 }
