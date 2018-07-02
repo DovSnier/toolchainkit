@@ -6,7 +6,7 @@ ext {
     build_tools_version = '27.0.3'
 
     // 配置环境
-    min_sdk_version = 10
+    min_sdk_version = 14
     target_sdk_version = 27
     version_code = 1
     version_name = "0.0.1"
