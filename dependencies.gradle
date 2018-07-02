@@ -10,6 +10,8 @@ ext {
     target_sdk_version = 27
     version_code = 1
     version_name = "0.0.1"
+    common_version_code = 1
+    common_version_name = "0.0.1"
 
     // support SDK 配置
     support_appcompat_version = "26.0.0-alpha1"
