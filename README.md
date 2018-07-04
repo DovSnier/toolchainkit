@@ -7,8 +7,9 @@ This is the integrated warehouse a personal edition specifically used for the ra
 > Long Term Support，LTS
 
 ```javascript
-compile 'com.dvsnier:base:0.0.1'
+implementation 'com.dvsnier:base:0.0.1'
 ```
+
 - adapter
 - bean
 - holder
@@ -16,7 +17,18 @@ compile 'com.dvsnier:base:0.0.1'
 - task
 - view
 
-#### 2. utils ####
+#### 2. common ####
+
+> Long Term Support，LTS
+
+```javascript
+implementation 'com.dvsnier:common:0.0.1'
+```
+
+- view
+- presenter
+
+#### 3. utils ####
 
 > 长久未维护版本，deprecated
 
