@@ -1,23 +1,57 @@
 package com.dvsnier.base.presenter;
 
-import com.dvsnier.base.task.IRunnable;
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
-import java.util.LinkedList;
-import java.util.List;
+import com.dvsnier.base.task.IRunnable;
+import com.dvsnier.base.task.handle.HandleAdapter;
+import com.dvsnier.base.task.handle.IHandleAdapter;
 
 /**
  * Created by lizw on 2016/6/15.
  */
-public abstract class AbstractCycleBasePresenter<T> extends AbstractBasePresenter<T> {
+public abstract class AbstractCycleBasePresenter<T> extends AbstractBasePresenter<T> implements IHandleAdapter {
 
-    @SuppressWarnings({"unchecked", "WeakerAccess", "SpellCheckingInspection"})
-    protected final List<IRunnable> quequPool = new LinkedList();
+    @Nullable
+    private IHandleAdapter handleAdapter;
+
+    public AbstractCycleBasePresenter() {
+        handleAdapter = new HandleAdapter();
+    }
+
+    public AbstractCycleBasePresenter(@NonNull Context context) {
+        super(context);
+        handleAdapter = new HandleAdapter(context);
+    }
+
+    @Override
+    public void stashOnRun(IRunnable runnable) {
+        if (null != handleAdapter) {
+            handleAdapter.stashOnRun(runnable);
+        }
+    }
+
+    @Override
+    public void stashOnRun(IRunnable runnable, long delayMillis) {
+        if (null != handleAdapter) {
+            handleAdapter.stashOnRun(runnable, delayMillis);
+        }
+    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //noinspection ConstantConditions
-        if (null != quequPool && !quequPool.isEmpty())
-            quequPool.clear();
+        if (null != handleAdapter && handleAdapter instanceof HandleAdapter) {
+            ((HandleAdapter) handleAdapter).onDestroy();
+        }
+    }
+
+    @Override
+    public void setContext(Context context) {
+        super.setContext(context);
+        if (null != handleAdapter && handleAdapter instanceof HandleAdapter) {
+            ((HandleAdapter) handleAdapter).setContext(context);
+        }
     }
 }
