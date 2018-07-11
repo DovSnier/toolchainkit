@@ -14,6 +14,8 @@ public abstract class AbstractBasePresenter<T> implements IBasePresenter, ICycle
     protected String TAG = this.getClass().getSimpleName();
     protected Context context;
     protected T view;
+    @SuppressWarnings("WeakerAccess")
+    protected int accessibility;
 
     public AbstractBasePresenter() {
     }
@@ -25,30 +27,37 @@ public abstract class AbstractBasePresenter<T> implements IBasePresenter, ICycle
     @CallSuper
     @Override
     public void onStart() {
+        accessibility = LIFE_START_FLAG;
     }
 
     @CallSuper
     @Override
     public void onResume() {
+        accessibility = LIFE_RESUME_FLAG;
     }
 
     @CallSuper
     @Override
     public void onPause() {
+        accessibility = LIFE_PAUSE_FLAG;
     }
 
     @CallSuper
     @Override
     public void onStop() {
+        accessibility = LIFE_STOP_FLAG;
     }
 
     @CallSuper
     @Override
     public void onDestroy() {
-        if (null != context)
+        accessibility = CYCLE_DESTROY_FLAG;
+        if (null != context) {
             context = null;
-        if (null != view)
+        }
+        if (null != view) {
             view = null;
+        }
     }
 
     @Nullable

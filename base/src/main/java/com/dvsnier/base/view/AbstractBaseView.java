@@ -15,6 +15,8 @@ public abstract class AbstractBaseView<T> implements IBaseView, ICycleView {
     protected String TAG = this.getClass().getSimpleName();
     protected Context context;
     protected T presenter;
+    @SuppressWarnings("WeakerAccess")
+    protected int accessibility;
 
     public AbstractBaseView() {
     }
@@ -26,6 +28,7 @@ public abstract class AbstractBaseView<T> implements IBaseView, ICycleView {
     @CallSuper
     @Override
     public void onStart() {
+        accessibility = LIFE_START_FLAG;
         if (null != getPresenter() && getPresenter() instanceof ILifeCycle) {
             ((ILifeCycle) getPresenter()).onStart();
         }
@@ -34,6 +37,7 @@ public abstract class AbstractBaseView<T> implements IBaseView, ICycleView {
     @CallSuper
     @Override
     public void onResume() {
+        accessibility = LIFE_RESUME_FLAG;
         if (null != getPresenter() && getPresenter() instanceof ILifeCycle) {
             ((ILifeCycle) getPresenter()).onResume();
         }
@@ -42,6 +46,7 @@ public abstract class AbstractBaseView<T> implements IBaseView, ICycleView {
     @CallSuper
     @Override
     public void onPause() {
+        accessibility = LIFE_PAUSE_FLAG;
         if (null != getPresenter() && getPresenter() instanceof ILifeCycle) {
             ((ILifeCycle) getPresenter()).onPause();
         }
@@ -50,6 +55,7 @@ public abstract class AbstractBaseView<T> implements IBaseView, ICycleView {
     @CallSuper
     @Override
     public void onStop() {
+        accessibility = LIFE_STOP_FLAG;
         if (null != getPresenter() && getPresenter() instanceof ILifeCycle) {
             ((ILifeCycle) getPresenter()).onStop();
         }
@@ -58,6 +64,7 @@ public abstract class AbstractBaseView<T> implements IBaseView, ICycleView {
     @CallSuper
     @Override
     public void onDestroy() {
+        accessibility = CYCLE_DESTROY_FLAG;
         if (null != getPresenter() && getPresenter() instanceof ICycle) {
             ((ICycle) getPresenter()).onDestroy();
         }
