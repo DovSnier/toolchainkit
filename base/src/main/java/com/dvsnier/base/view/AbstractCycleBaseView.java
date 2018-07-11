@@ -1,6 +1,7 @@
 package com.dvsnier.base.view;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 
 import com.dvsnier.base.task.IRunnable;
@@ -58,6 +59,14 @@ public abstract class AbstractCycleBaseView extends AbstractBaseView implements 
     }
 
     @Override
+    public Handler getMainHandler() {
+        if (handleAdapter != null) {
+            return handleAdapter.getMainHandler();
+        }
+        return null;
+    }
+
+    @Override
     public void post(IRunnable runnable) {
         if (null != handleAdapter) {
             handleAdapter.post(runnable);
@@ -76,6 +85,7 @@ public abstract class AbstractCycleBaseView extends AbstractBaseView implements 
         super.onDestroy();
         if (null != handleAdapter && handleAdapter instanceof HandleAdapter) {
             ((HandleAdapter) handleAdapter).onDestroy();
+            handleAdapter = null;
         }
     }
 

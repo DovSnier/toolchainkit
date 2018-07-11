@@ -1,5 +1,7 @@
 package com.dvsnier.base.task.handle;
 
+import android.support.annotation.NonNull;
+
 import com.dvsnier.base.task.IRunnable;
 
 /**
@@ -8,7 +10,18 @@ import com.dvsnier.base.task.IRunnable;
  */
 public interface IHandleAdapter {
 
-    void stashOnRun(IRunnable runnable);
+    /**
+     * the stash thread to the appropriate time to execute
+     *
+     * @param runnable {@see IRunnable}
+     */
+    void stashOnRun(@NonNull IRunnable runnable);
 
-    void stashOnRun(IRunnable runnable, long delayMillis);
+    /**
+     * the stash thread to the appropriate time to execute
+     *
+     * @param runnable    {@see IRunnable}
+     * @param delayMillis the time stamp
+     */
+    void stashOnRun(@NonNull IRunnable runnable, long delayMillis);
 }

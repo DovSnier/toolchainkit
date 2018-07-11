@@ -44,6 +44,7 @@ public abstract class AbstractCycleBasePresenter<T> extends AbstractBasePresente
         super.onDestroy();
         if (null != handleAdapter && handleAdapter instanceof HandleAdapter) {
             ((HandleAdapter) handleAdapter).onDestroy();
+            handleAdapter = null;
         }
     }
 
