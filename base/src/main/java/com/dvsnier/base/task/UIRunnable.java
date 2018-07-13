@@ -3,7 +3,7 @@ package com.dvsnier.base.task;
 /**
  * Created by lizw on 2016/3/5.
  */
-public abstract class UIRunnable implements IStashRunnable {
+public abstract class UIRunnable<T> implements IStashRunnable<T> {
 
     private boolean expired;
     private long delayMillis;
@@ -21,6 +21,11 @@ public abstract class UIRunnable implements IStashRunnable {
     }
 
     @Override
+    public boolean isDelay() {
+        return getDelayMillis() > 0;
+    }
+
+    @Override
     public long getDelayMillis() {
         return delayMillis;
     }
@@ -32,8 +37,15 @@ public abstract class UIRunnable implements IStashRunnable {
     }
 
     @Override
-    public void setDelay() {
-        // TODO: 延期算法
+    public void setDelay(int flag) {
+        if (isDelay()) {
+            delayMillis -= System.currentTimeMillis() - lastTimeMillis;
+            if (delayMillis < 0) {
+                delayMillis = 0;
+                if (ITaskStrategy.TIMEOUT_STRATEGY == flag) setExpired(true);
+            }
+        }
+        lastTimeMillis = System.currentTimeMillis();
     }
 
     @Override
@@ -44,5 +56,10 @@ public abstract class UIRunnable implements IStashRunnable {
     @Override
     public void setForce(boolean force) {
         this.force = force;
+    }
+
+    @Override
+    public final void run() {
+        stashRun();
     }
 }

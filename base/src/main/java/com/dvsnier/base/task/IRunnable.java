@@ -18,6 +18,11 @@ public interface IRunnable extends Runnable {
     void setExpired(boolean expired);
 
     /**
+     * it is used to identify whether a thread is in a state of delay
+     */
+    boolean isDelay();
+
+    /**
      * getting the delayed execution timestamp
      */
     long getDelayMillis();
@@ -31,8 +36,10 @@ public interface IRunnable extends Runnable {
 
     /**
      * marking delay
+     *
+     * @param flag {@link ITaskStrategy#TRADITIONAL_STRATEGY} or {@link ITaskStrategy#TIMEOUT_STRATEGY}
      */
-    void setDelay();
+    void setDelay(int flag);
 
     /**
      * whether or not a thread is forced to execute

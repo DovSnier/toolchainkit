@@ -2,19 +2,13 @@ package com.dvsnier.base.task.handle;
 
 import android.content.Context;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.dvsnier.base.task.IBaseTask;
-import com.dvsnier.base.task.ICycle;
-import com.dvsnier.base.task.ILifeCycle;
 import com.dvsnier.base.task.IRunnable;
 
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by lizw on 2016/4/10.
@@ -77,6 +71,7 @@ public final class HandleAdapter extends AbstractHandleAdapter implements IHandl
      * @param runnable    the runnable that will be executed.
      * @param delayMillis the delay (in milliseconds) until the runnable will be executed.
      */
+    @SuppressWarnings("WeakerAccess")
     protected final void dispatchPendingRunnableEvent(@Nullable IRunnable runnable, long delayMillis) {
         if (null != getMainHandler()) {
             //noinspection ConstantConditions
@@ -85,11 +80,12 @@ public final class HandleAdapter extends AbstractHandleAdapter implements IHandl
                     case LIFE_START_FLAG:
                     case LIFE_RESUME_FLAG:
                         if (!runnable.isExpired()) {
+                            runnable.setDelayMillis(delayMillis);
                             if (runnable.isForce()) {
                                 runnable.setDelayMillis(DEFAULT_TIME_STAMP);
                                 getMainHandler().post(runnable);
                             } else {
-                                if (delayMillis <= 0) {
+                                if (!runnable.isDelay()) {
                                     runnable.setDelayMillis(DEFAULT_TIME_STAMP);
                                     getMainHandler().post(runnable);
                                 } else {
@@ -103,13 +99,14 @@ public final class HandleAdapter extends AbstractHandleAdapter implements IHandl
                     case LIFE_PAUSE_FLAG:
                     default:
                         if (!runnable.isExpired()) {
+                            runnable.setDelayMillis(delayMillis);
                             if (runnable.isForce()) {
                                 runnable.setDelayMillis(DEFAULT_TIME_STAMP);
                                 getMainHandler().post(runnable);
                                 runnable.setExpired(true);
                             } else {
                                 if (!quequPool.contains(runnable)) {
-                                    runnable.setDelay();
+                                    runnable.setDelay(TASK_STRATEGY);
                                     quequPool.add(runnable);
                                 }
                             }
@@ -130,7 +127,7 @@ public final class HandleAdapter extends AbstractHandleAdapter implements IHandl
                     runnable.setDelayMillis(DEFAULT_TIME_STAMP);
                     getMainHandler().post(runnable);
                 } else {
-                    if (runnable.getDelayMillis() <= 0) {
+                    if (!runnable.isDelay()) {
                         runnable.setDelayMillis(DEFAULT_TIME_STAMP);
                         getMainHandler().post(runnable);
                     } else {
@@ -155,7 +152,7 @@ public final class HandleAdapter extends AbstractHandleAdapter implements IHandl
                     runnable.setExpired(true);
                     iterator.remove();
                 } else {
-                    runnable.setDelay();
+                    runnable.setDelay(TASK_STRATEGY);
                 }
             }
         }

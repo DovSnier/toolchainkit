@@ -7,5 +7,15 @@ import android.support.annotation.NonNull;
  */
 public interface IStashRunnable<T> extends IRunnable {
 
+    /**
+     * the stash task
+     */
+    void stashRun();
+
+    /**
+     * the currently executed tasks
+     *
+     * @param view the current view
+     */
     void run(@NonNull T view);
 }

@@ -10,6 +10,7 @@ import com.dvsnier.base.task.IBaseTask;
 import com.dvsnier.base.task.ICycle;
 import com.dvsnier.base.task.ILifeCycle;
 import com.dvsnier.base.task.IRunnable;
+import com.dvsnier.base.task.ITaskStrategy;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 /**
  * Created by lizw on 2016/4/10.
  */
-public abstract class AbstractHandleAdapter implements ICycle, ILifeCycle, IBaseTask {
+public abstract class AbstractHandleAdapter implements ICycle, ILifeCycle, IBaseTask, ITaskStrategy {
 
     @SuppressWarnings({"unchecked", "WeakerAccess", "SpellCheckingInspection"})
     protected final List<IRunnable> quequPool = new LinkedList();
@@ -25,13 +26,16 @@ public abstract class AbstractHandleAdapter implements ICycle, ILifeCycle, IBase
     protected Context context;
     @SuppressWarnings("WeakerAccess")
     protected Handler handler;
+    @SuppressWarnings("WeakerAccess")
     protected int accessibility;
+    @SuppressWarnings("WeakerAccess")
+    protected int TASK_STRATEGY;
 
     public AbstractHandleAdapter() {
         handler = new Handler(Looper.getMainLooper());
     }
 
-    public AbstractHandleAdapter(Context context) {
+    public AbstractHandleAdapter(@Nullable Context context) {
         this.context = context;
         handler = new Handler(Looper.getMainLooper());
     }
@@ -74,6 +78,12 @@ public abstract class AbstractHandleAdapter implements ICycle, ILifeCycle, IBase
         if (null != handler) {
             handler.removeCallbacksAndMessages(null);
         }
+        TASK_STRATEGY = ITaskStrategy.TRADITIONAL_STRATEGY;
+    }
+
+    @Override
+    public void setTaskStrategy(@TaskStrategy int flag) {
+        this.TASK_STRATEGY = flag;
     }
 
     @Nullable
