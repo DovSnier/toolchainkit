@@ -30,9 +30,8 @@ public abstract class AbstractRecyclerViewAdapter<T, VH extends RecyclerView.Vie
 
     public AbstractRecyclerViewAdapter(@NonNull Context context, List<T> data) {
         this.context = context;
-        if (null != data && !data.isEmpty()) {
-            this.dataSet.addAll(data);
-        }
+        clear();
+        addAll(data);
     }
 
     @Override
@@ -62,13 +61,55 @@ public abstract class AbstractRecyclerViewAdapter<T, VH extends RecyclerView.Vie
     }
 
     public void setData(@NonNull List<T> data) {
+        clear();
+        addAll(data);
+    }
+
+    public void add(@NonNull T data) {
+        //noinspection ConstantConditions
+        if (null != data) {
+            this.dataSet.add(data);
+        }
+    }
+
+    public void add(int index, @NonNull T data) {
+        //noinspection ConstantConditions
+        if (index >= 0 && null != data) {
+            this.dataSet.add(index, data);
+        }
+    }
+
+    public void addAll(@NonNull List<T> data) {
         //noinspection ConstantConditions
         if (null != data && !data.isEmpty()) {
-            if (!this.dataSet.isEmpty()) {
-                this.dataSet.clear();
-            }
+            this.dataSet.addAll(data);
         }
-        this.dataSet.addAll(data);
+    }
+
+    public void remove(@NonNull T data) {
+        //noinspection ConstantConditions
+        if (null != data && this.dataSet.contains(data)) {
+            this.dataSet.remove(data);
+        }
+    }
+
+    public void remove(int index) {
+        if (index >= 0 && this.dataSet.size() > index) {
+            this.dataSet.remove(index);
+        }
+    }
+
+    public void removeAll(@NonNull List<T> data) {
+        //noinspection ConstantConditions
+        if (null != data && !data.isEmpty() && this.dataSet.containsAll(data)) {
+            this.dataSet.removeAll(data);
+        }
+    }
+
+    protected void clear() {
+        if (!this.dataSet.isEmpty()) {
+            this.dataSet.clear();
+        }
     }
 
     public Context getContext() {
