@@ -19,46 +19,28 @@ import java.util.List;
 /**
  * Created by lizw on 2016/4/10.
  */
-public final class HandleAdapter implements IHandle, IHandleAdapter, ICycle, ILifeCycle, IBaseTask {
-
-    @Nullable
-    protected Context context;
-    @SuppressWarnings({"unchecked", "WeakerAccess", "SpellCheckingInspection"})
-    protected final List<IRunnable> quequPool = new LinkedList();
-    @SuppressWarnings("WeakerAccess")
-    protected Handler handler;
-    private int accessibility;
+public final class HandleAdapter extends AbstractHandleAdapter implements IHandle, IHandleAdapter {
 
     public HandleAdapter() {
-        handler = new Handler(Looper.getMainLooper());
+        super();
     }
 
     public HandleAdapter(@Nullable Context context) {
-        this.context = context;
-        handler = new Handler(Looper.getMainLooper());
-    }
-
-    @Override
-    public void onStart() {
-        accessibility = LIFE_START_FLAG & CYCLE_MASK;
-    }
-
-    @Override
-    public void onResume() {
-        accessibility = LIFE_RESUME_FLAG & CYCLE_MASK;
-        onDispatchRunnableEvents();
-    }
-
-    @Override
-    public void onPause() {
-        accessibility = LIFE_PAUSE_FLAG & CYCLE_MASK;
-        onInterceptRunnableEvents();
+        super(context);
     }
 
     @CallSuper
     @Override
-    public void onStop() {
-        accessibility = LIFE_STOP_FLAG & CYCLE_MASK;
+    public void onResume() {
+        super.onResume();
+        onDispatchRunnableEvents();
+    }
+
+    @CallSuper
+    @Override
+    public void onPause() {
+        super.onPause();
+        onInterceptRunnableEvents();
     }
 
     @Override
@@ -86,21 +68,6 @@ public final class HandleAdapter implements IHandle, IHandleAdapter, ICycle, ILi
         dispatchPendingRunnableEvent(runnable, delayMillis);
     }
 
-    @Override
-    public void onDestroy() {
-        accessibility = CYCLE_DESTROY_FLAG;
-        if (null != context) {
-            context = null;
-        }
-        //noinspection ConstantConditions
-        if (null != quequPool && !quequPool.isEmpty()) {
-            quequPool.clear();
-        }
-        if (null != handler) {
-            handler.removeCallbacksAndMessages(null);
-        }
-    }
-
     /**
      * processing the thread task in v, p
      * <pre>
@@ -115,6 +82,7 @@ public final class HandleAdapter implements IHandle, IHandleAdapter, ICycle, ILi
             //noinspection ConstantConditions
             if (null != runnable) {
                 switch (accessibility & CYCLE_MASK) {
+                    case LIFE_START_FLAG:
                     case LIFE_RESUME_FLAG:
                         if (!runnable.isExpired()) {
                             if (runnable.isForce()) {
@@ -127,12 +95,13 @@ public final class HandleAdapter implements IHandle, IHandleAdapter, ICycle, ILi
                                 } else {
                                     getMainHandler().postDelayed(runnable, delayMillis);
                                 }
-
                             }
                             runnable.setExpired(true);
                         }
                         break;
+                    case LIFE_STOP_FLAG:
                     case LIFE_PAUSE_FLAG:
+                    default:
                         if (!runnable.isExpired()) {
                             if (runnable.isForce()) {
                                 runnable.setDelayMillis(DEFAULT_TIME_STAMP);
@@ -200,14 +169,5 @@ public final class HandleAdapter implements IHandle, IHandleAdapter, ICycle, ILi
                 iterator.remove();
             }
         }
-    }
-
-    @Nullable
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(@Nullable Context context) {
-        this.context = context;
     }
 }

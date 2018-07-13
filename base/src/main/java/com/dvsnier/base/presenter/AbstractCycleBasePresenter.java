@@ -26,14 +26,14 @@ public abstract class AbstractCycleBasePresenter<T> extends AbstractBasePresente
     }
 
     @Override
-    public void stashOnRun(IRunnable runnable) {
+    public void stashOnRun(@NonNull IRunnable runnable) {
         if (null != handleAdapter) {
             handleAdapter.stashOnRun(runnable);
         }
     }
 
     @Override
-    public void stashOnRun(IRunnable runnable, long delayMillis) {
+    public void stashOnRun(@NonNull IRunnable runnable, long delayMillis) {
         if (null != handleAdapter) {
             handleAdapter.stashOnRun(runnable, delayMillis);
         }

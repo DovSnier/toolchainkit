@@ -2,6 +2,7 @@ package com.dvsnier.base.view;
 
 import android.content.Context;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.dvsnier.base.task.IRunnable;
@@ -67,14 +68,14 @@ public abstract class AbstractCycleBaseView extends AbstractBaseView implements 
     }
 
     @Override
-    public void post(IRunnable runnable) {
+    public void post(@NonNull IRunnable runnable) {
         if (null != handleAdapter) {
             handleAdapter.post(runnable);
         }
     }
 
     @Override
-    public void postDelayed(IRunnable runnable, long delayMillis) {
+    public void postDelayed(@NonNull IRunnable runnable, long delayMillis) {
         if (null != handleAdapter) {
             handleAdapter.postDelayed(runnable, delayMillis);
         }
