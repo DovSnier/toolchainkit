@@ -24,6 +24,10 @@ public abstract class AbstractBasePresenter<T> implements IBasePresenter, ICycle
         this.context = context;
     }
 
+    public AbstractBasePresenter(T view) {
+        this.view = view;
+    }
+
     @CallSuper
     @Override
     public void onStart() {
