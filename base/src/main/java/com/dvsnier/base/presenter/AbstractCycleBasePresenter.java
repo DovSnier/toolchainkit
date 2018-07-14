@@ -25,6 +25,11 @@ public abstract class AbstractCycleBasePresenter<T> extends AbstractBasePresente
         handleAdapter = new HandleAdapter(context);
     }
 
+    public AbstractCycleBasePresenter(T view) {
+        super(view);
+        handleAdapter = new HandleAdapter(context);
+    }
+
     @Override
     public void stashOnRun(@NonNull IRunnable runnable) {
         if (null != handleAdapter) {

@@ -2,6 +2,7 @@ package com.dvsnier.base.view;
 
 import android.content.Context;
 import android.os.Handler;
+import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -13,7 +14,7 @@ import com.dvsnier.base.task.handle.IHandle;
 /**
  * Created by lizw on 2016/6/15.
  */
-public abstract class AbstractCycleBaseView extends AbstractBaseView implements IHandle, ITaskStrategy {
+public abstract class AbstractCycleBaseView<T> extends AbstractBaseView<T> implements IHandle, ITaskStrategy {
 
     @SuppressWarnings("WeakerAccess")
     @Nullable
@@ -28,6 +29,7 @@ public abstract class AbstractCycleBaseView extends AbstractBaseView implements 
         handleAdapter = new HandleAdapter(context);
     }
 
+    @CallSuper
     @Override
     public void onStart() {
         super.onStart();
@@ -36,6 +38,7 @@ public abstract class AbstractCycleBaseView extends AbstractBaseView implements 
         }
     }
 
+    @CallSuper
     @Override
     public void onResume() {
         super.onResume();
@@ -44,6 +47,7 @@ public abstract class AbstractCycleBaseView extends AbstractBaseView implements 
         }
     }
 
+    @CallSuper
     @Override
     public void onPause() {
         super.onPause();
@@ -52,6 +56,7 @@ public abstract class AbstractCycleBaseView extends AbstractBaseView implements 
         }
     }
 
+    @CallSuper
     @Override
     public void onStop() {
         super.onStop();
@@ -82,6 +87,7 @@ public abstract class AbstractCycleBaseView extends AbstractBaseView implements 
         }
     }
 
+    @CallSuper
     @Override
     public void onDestroy() {
         super.onDestroy();
