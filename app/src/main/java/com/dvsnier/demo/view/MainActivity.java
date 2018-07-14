@@ -1,4 +1,4 @@
-package com.dvsnier.demo;
+package com.dvsnier.demo.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,15 +6,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.dvsnier.base.view.IBaseView;
-import com.dvsnier.common.view.BaseCompatActivity;
+import com.dvsnier.base.view.ICompatV1BaseView;
+import com.dvsnier.demo.R;
 import com.dvsnier.demo.presenter.MainPresenter;
+import com.dvsnier.support.view.SupportActivity;
 import com.dvsnier.utils.ThreadUtil;
 
 /**
  * MainActivity
  */
-public class MainActivity extends BaseCompatActivity<MainPresenter> implements IBaseView {
+public class MainActivity extends SupportActivity<MainPresenter> implements ICompatV1BaseView {
 
     private TextView content;
 

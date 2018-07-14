@@ -24,6 +24,7 @@ dependencies {
     //noinspection GradleDependency
     implementation "com.android.support:appcompat-v7:${rootProject.ext.support_appcompat_version}"
     implementation project(':common')
+    implementation project(':support')
     implementation project(':utils')
     debugImplementation 'com.dvsnier:crash:0.0.4'
     releaseImplementation 'com.dvsnier:crash-no:0.0.4'

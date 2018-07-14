@@ -3,8 +3,8 @@ package com.dvsnier.demo.presenter;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.dvsnier.common.presenter.BasePresenter;
-import com.dvsnier.demo.MainActivity;
+import com.dvsnier.demo.view.MainActivity;
+import com.dvsnier.support.presenter.SupportPresenter;
 import com.dvsnier.utils.LogUtil;
 import com.dvsnier.utils.ThreadUtil;
 import com.dvsnier.utils.UiThreadUtil;
@@ -13,7 +13,7 @@ import com.dvsnier.utils.UiThreadUtil;
  * MainPresenter
  * Created by dovsnier on 2018/7/2.
  */
-public class MainPresenter extends BasePresenter<MainActivity> {
+public class MainPresenter extends SupportPresenter<MainActivity> {
 
     public void request() {
         LogUtil.printThread(TAG, "request()");
