@@ -25,6 +25,14 @@ public abstract class BaseCompatActivity<T extends BasePresenter> extends AppCom
         newInstances();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (null != presenter) {
+            presenter.onDestroy();
+        }
+    }
+
     protected final void newInstances() {
         Type genericSuperclass = getClass().getGenericSuperclass();
         if (null != genericSuperclass) {
@@ -63,13 +71,5 @@ public abstract class BaseCompatActivity<T extends BasePresenter> extends AppCom
 
     public void setPresenter(@Nullable T presenter) {
         this.presenter = presenter;
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (null != presenter) {
-            presenter.onDestroy();
-        }
     }
 }

@@ -25,6 +25,14 @@ public abstract class BaseCompatFragment<T extends BaseFragmentPresenter> extend
         newInstances();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (null != presenter) {
+            presenter.onDestroy();
+        }
+    }
+
     protected final void newInstances() {
         Type genericSuperclass = getClass().getGenericSuperclass();
         if (null != genericSuperclass) {
@@ -56,7 +64,6 @@ public abstract class BaseCompatFragment<T extends BaseFragmentPresenter> extend
         }
     }
 
-
     @Nullable
     public T getPresenter() {
         return presenter;
@@ -64,13 +71,5 @@ public abstract class BaseCompatFragment<T extends BaseFragmentPresenter> extend
 
     public void setPresenter(@Nullable T presenter) {
         this.presenter = presenter;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (null != presenter) {
-            presenter.onDestroy();
-        }
     }
 }

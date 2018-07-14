@@ -1,5 +1,6 @@
 package com.dvsnier.common.presenter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -10,13 +11,16 @@ import com.dvsnier.common.view.BaseCompatActivity;
  * basic compatible presenter
  * <p>
  * Created by lizw on 2016/6/19.
+ *
+ * @deprecated
  */
 public class BasePresenter<T extends BaseCompatActivity> extends AbstractBasePresenter<T> {
 
-    @Nullable
-    protected T view;
-
     public BasePresenter() {
+    }
+
+    public BasePresenter(@NonNull Context context) {
+        super(context);
     }
 
     public BasePresenter(@NonNull T view) {
@@ -30,6 +34,7 @@ public class BasePresenter<T extends BaseCompatActivity> extends AbstractBasePre
     }
 
     public void setActivity(@Nullable T view) {
+        setContext(view);
         this.view = view;
     }
 }
