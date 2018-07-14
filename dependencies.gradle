@@ -14,6 +14,8 @@ ext {
     common_version_name = "0.0.1"
     utils_version_code = 6
     utils_version_name = "0.0.3"
+    support_version_code = 1
+    support_version_name = "0.0.1"
 
     // support SDK 配置
     support_appcompat_version = "26.0.0-alpha1"
