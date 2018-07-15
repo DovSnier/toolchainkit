@@ -1,8 +1,24 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="@style/Theme.AppCompat">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary" tools:ignore="PrivateResource">@color/material_deep_teal_500
+        </item>
+        <item name="colorPrimaryDark" tools:ignore="PrivateResource">@color/material_deep_teal_500
+        </item>
+        <item name="colorAccent">@android:color/white</item>
+        <item name="android:windowBackground" tools:ignore="PrivateResource">
+            @color/dim_foreground_material_dark
+        </item>
+        <item name="actionOverflowMenuStyle">@style/MenuItem</item>
     </style>
 
+    <style name="MenuItem" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">8dp</item>
+    </style>
 </resources>

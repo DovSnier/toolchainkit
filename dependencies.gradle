@@ -27,4 +27,5 @@ ext {
 
     // extended SDK 配置
     gson_version = "2.8.0"
+    butterknife_version = "8.8.1"
 }

@@ -23,6 +23,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleDependency
     implementation "com.android.support:appcompat-v7:${rootProject.ext.support_appcompat_version}"
+    implementation "com.android.support:recyclerview-v7:${rootProject.ext.support_recyclerview_version}"
     implementation project(':common')
     implementation project(':support')
     implementation project(':utils')
@@ -35,4 +36,6 @@ dependencies {
     testImplementation "junit:junit:${rootProject.ext.junit_version}"
     androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runner_version}"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espresso_core_version}"
+    implementation "com.jakewharton:butterknife:${rootProject.ext.butterknife_version}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterknife_version}"
 }
