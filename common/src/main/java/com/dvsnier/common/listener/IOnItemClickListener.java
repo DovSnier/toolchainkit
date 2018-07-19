@@ -10,5 +10,5 @@ import com.dvsnier.base.IBaseOnClickListener;
  */
 public interface IOnItemClickListener<T> extends IBaseOnClickListener {
 
-    void onClick(View view, int position, T bean);
+    void onItemClick(View view, int position, T bean);
 }
