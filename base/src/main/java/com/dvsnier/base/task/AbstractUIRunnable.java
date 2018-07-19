@@ -3,7 +3,7 @@ package com.dvsnier.base.task;
 /**
  * Created by lizw on 2016/3/5.
  */
-public abstract class UIRunnable<T> implements IStashRunnable<T> {
+public abstract class AbstractUIRunnable implements IStashRunnable {
 
     private boolean expired;
     private long delayMillis;

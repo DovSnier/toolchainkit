@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.dvsnier.base.presenter.AbstractCycleBasePresenter;
-import com.dvsnier.base.task.UIRunnable;
+import com.dvsnier.base.task.AbstractUIRunnable;
 
 /**
  * basic compatible presenter with life cycle control
@@ -24,11 +24,19 @@ public class BaseCompatPresenter<T> extends AbstractCycleBasePresenter<T> {
         super(view);
     }
 
-    public abstract class StashRunnable<T> extends UIRunnable<T> {
+    public abstract class StashRunnable extends AbstractUIRunnable {
         @Override
         public void stashRun() {
-            //noinspection ConstantConditions,unchecked
-            run((T) getView());
+            if (null != getView()) {
+                run(getView());
+            }
         }
+
+        /**
+         * the currently executed tasks
+         *
+         * @param view the current view
+         */
+        public abstract void run(@NonNull T view);
     }
 }

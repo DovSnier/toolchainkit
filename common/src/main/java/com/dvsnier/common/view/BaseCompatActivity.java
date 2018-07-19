@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.dvsnier.base.task.AbstractUIRunnable;
 import com.dvsnier.base.task.IRunnable;
 import com.dvsnier.base.task.handle.IHandle;
 import com.dvsnier.base.view.ViewWrapper;
@@ -140,5 +141,14 @@ public abstract class BaseCompatActivity<T extends BaseCompatPresenter> extends 
 
     public void setPresenter(@Nullable T presenter) {
         this.presenter = presenter;
+    }
+
+    public abstract class UIRunnable extends AbstractUIRunnable {
+        @Override
+        public void stashRun() {
+            uiRun();
+        }
+
+        public abstract void uiRun();
     }
 }
