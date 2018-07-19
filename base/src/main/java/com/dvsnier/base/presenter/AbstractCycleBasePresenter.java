@@ -25,6 +25,11 @@ public abstract class AbstractCycleBasePresenter<T> extends AbstractBasePresente
         handleAdapter = new HandleAdapter(context);
     }
 
+    public AbstractCycleBasePresenter(@NonNull Context context, @Nullable IHandleAdapter handleAdapter) {
+        super(context);
+        this.handleAdapter = handleAdapter;
+    }
+
     public AbstractCycleBasePresenter(T view) {
         super(view);
         handleAdapter = new HandleAdapter(context);
@@ -59,5 +64,9 @@ public abstract class AbstractCycleBasePresenter<T> extends AbstractBasePresente
         if (null != handleAdapter && handleAdapter instanceof HandleAdapter) {
             ((HandleAdapter) handleAdapter).setContext(context);
         }
+    }
+
+    public void setHandleAdapter(@Nullable IHandleAdapter handleAdapter) {
+        this.handleAdapter = handleAdapter;
     }
 }

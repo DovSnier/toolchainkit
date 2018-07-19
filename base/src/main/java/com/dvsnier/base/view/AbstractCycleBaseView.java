@@ -6,6 +6,7 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.dvsnier.base.presenter.AbstractCycleBasePresenter;
 import com.dvsnier.base.task.IRunnable;
 import com.dvsnier.base.task.ITaskStrategy;
 import com.dvsnier.base.task.handle.HandleAdapter;
@@ -109,6 +110,18 @@ public abstract class AbstractCycleBaseView<T> extends AbstractBaseView<T> imple
         super.setContext(context);
         if (null != handleAdapter && handleAdapter instanceof HandleAdapter) {
             ((HandleAdapter) handleAdapter).setContext(context);
+        }
+    }
+
+    @Override
+    public void setPresenter(T presenter) {
+        super.setPresenter(presenter);
+        if (null != presenter) {
+            if (presenter instanceof AbstractCycleBasePresenter) {
+                if (null != handleAdapter && handleAdapter instanceof HandleAdapter) {
+                    ((AbstractCycleBasePresenter) presenter).setHandleAdapter((HandleAdapter) handleAdapter);
+                }
+            }
         }
     }
 }

@@ -6,14 +6,10 @@ import android.support.annotation.NonNull;
 import com.dvsnier.base.task.IRunnable;
 
 /**
+ * view operation thread  interface
  * Created by lizw on 2016/4/6.
  */
-public interface IHandle {
-
-    /**
-     * the default timestamp
-     */
-    long DEFAULT_TIME_STAMP = 0;
+public interface IHandle extends IAdapter {
 
     /**
      * Return the Looper for the main thread of the current process.  This is
