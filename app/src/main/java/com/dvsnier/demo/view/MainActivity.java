@@ -23,7 +23,7 @@ import com.dvsnier.demo.presenter.MainPresenter;
  */
 public class MainActivity extends BaseCompatActivity<MainPresenter> implements ICompatV1BaseView, IOnClickListener {
 
-    private RecyclerView recycleView;
+    private RecyclerView recyclerView;
     private MainAdapter adapter;
 
     @Override
@@ -44,13 +44,13 @@ public class MainActivity extends BaseCompatActivity<MainPresenter> implements I
                 finish();
             }
         });
-        recycleView = (RecyclerView) findViewById(R.id.recycle_view);
+        recyclerView = (RecyclerView) findViewById(R.id.recycle_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recycleView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
         adapter = new MainAdapter(this);
         adapter.setOnClickListener(this);
-        recycleView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -93,5 +93,43 @@ public class MainActivity extends BaseCompatActivity<MainPresenter> implements I
     @Override
     public void onClick(View view, int position) {
         Toast.makeText(this, "position: " + position, Toast.LENGTH_SHORT).show();
+        switch (position) {
+            case 0:
+                if (getPresenter() != null) {
+                    getPresenter().testStash();
+                }
+                break;
+            case 1:
+                postDelayed(new UIRunnable() {
+                    @Override
+                    public void uiRun() {
+                        if (getPresenter() != null) {
+                            getPresenter().testStashOf3s();
+                        }
+                    }
+                }, 3000);
+
+                break;
+            case 2:
+                post(new UIRunnable() {
+                    @Override
+                    public void uiRun() {
+                        if (getPresenter() != null) {
+                            getPresenter().testStash();
+                        }
+                    }
+                });
+                break;
+            case 3:
+                postDelayed(new UIRunnable() {
+                    @Override
+                    public void uiRun() {
+                        if (getPresenter() != null) {
+                            getPresenter().testStash();
+                        }
+                    }
+                }, 3000);
+                break;
+        }
     }
 }
