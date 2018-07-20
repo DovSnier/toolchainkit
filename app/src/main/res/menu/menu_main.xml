@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.MainActivity">
+
+    <item
+        android:id="@+id/action_edit"
+        android:orderInCategory="80"
+        android:title="Support Activity"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="90"
+        android:title="..."
+        app:showAsAction="never"
+        tools:ignore="HardcodedText" />
+
+</menu>

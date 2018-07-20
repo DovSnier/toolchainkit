@@ -1,4 +1,4 @@
-package com.dvsnier.demo;
+package com.dvsnier.demo.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,22 +6,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.dvsnier.base.view.IBaseView;
-import com.dvsnier.common.view.BaseCompatActivity;
-import com.dvsnier.demo.presenter.MainPresenter;
+import com.dvsnier.base.view.ICompatV1BaseView;
+import com.dvsnier.demo.R;
+import com.dvsnier.demo.presenter.DemoPresenter;
+import com.dvsnier.support.view.SupportActivity;
 import com.dvsnier.utils.ThreadUtil;
 
 /**
- * MainActivity
+ * DemoActivity
+ * Created by DovSnier on 2018/7/14.
  */
-public class MainActivity extends BaseCompatActivity<MainPresenter> implements IBaseView {
+public class DemoActivity extends SupportActivity<DemoPresenter> implements ICompatV1BaseView {
 
     private TextView content;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_demo);
         initView();
         initData();
     }
@@ -49,10 +51,5 @@ public class MainActivity extends BaseCompatActivity<MainPresenter> implements I
         if (null != getPresenter()) {
             getPresenter().request();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }

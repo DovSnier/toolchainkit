@@ -10,10 +10,14 @@ ext {
     target_sdk_version = 27
     version_code = 1
     version_name = "0.0.1"
-    common_version_code = 1
-    common_version_name = "0.0.1"
+    base_version_code = 2
+    base_version_name = "0.0.2"
+    common_version_code = 2
+    common_version_name = "0.0.2"
     utils_version_code = 6
     utils_version_name = "0.0.3"
+    support_version_code = 1
+    support_version_name = "0.0.1"
 
     // support SDK 配置
     support_appcompat_version = "26.0.0-alpha1"
@@ -25,4 +29,5 @@ ext {
 
     // extended SDK 配置
     gson_version = "2.8.0"
+    butterknife_version = "8.8.1"
 }

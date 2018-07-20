@@ -70,7 +70,7 @@ publish {
     userOrg = 'dovsnier'
     groupId = 'com.dvsnier'
     artifactId = 'common'
-    publishVersion = rootProject.ext.version_name
+    publishVersion = rootProject.ext.common_version_name
     desc = "the android lib that version is ${rootProject.ext.common_version_name}"
     website = siteUrl
     repository = gitUrl
