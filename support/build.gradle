@@ -69,8 +69,8 @@ publish {
     repoName = 'AndroidComponent'
     userOrg = 'dovsnier'
     groupId = 'com.dvsnier'
-    artifactId = 'support'
-    publishVersion = rootProject.ext.version_name
+    artifactId = 'support-v1'
+    publishVersion = rootProject.ext.support_version_name
     desc = "the android lib that version is ${rootProject.ext.support_version_name}"
     website = siteUrl
     repository = gitUrl
