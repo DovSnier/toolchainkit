@@ -1,1 +1,1 @@
-include ':app', ':utils', ':base', ':javaKit', ':common'
+include ':app', ':utils', ':base', ':javaKit', ':common', ':support'

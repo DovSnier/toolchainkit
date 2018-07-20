@@ -7,8 +7,8 @@ android {
         applicationId "com.dvsnier.demo.toolchain"
         minSdkVersion rootProject.ext.min_sdk_version
         targetSdkVersion rootProject.ext.target_sdk_version
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -23,7 +23,9 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleDependency
     implementation "com.android.support:appcompat-v7:${rootProject.ext.support_appcompat_version}"
+    implementation "com.android.support:recyclerview-v7:${rootProject.ext.support_recyclerview_version}"
     implementation project(':common')
+    implementation project(':support')
     implementation project(':utils')
     debugImplementation 'com.dvsnier:crash:0.0.4'
     releaseImplementation 'com.dvsnier:crash-no:0.0.4'
@@ -34,4 +36,6 @@ dependencies {
     testImplementation "junit:junit:${rootProject.ext.junit_version}"
     androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runner_version}"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espresso_core_version}"
+    implementation "com.jakewharton:butterknife:${rootProject.ext.butterknife_version}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterknife_version}"
 }

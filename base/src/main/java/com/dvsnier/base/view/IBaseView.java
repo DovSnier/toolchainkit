@@ -5,5 +5,4 @@ package com.dvsnier.base.view;
  */
 public interface IBaseView extends IView {
 
-    void initData();
 }
