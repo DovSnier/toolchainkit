@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.min_sdk_version
         targetSdkVersion rootProject.ext.target_sdk_version
-        versionCode rootProject.ext.version_code
-        versionName rootProject.ext.version_name
+        versionCode rootProject.ext.base_version_code
+        versionName rootProject.ext.base_version_name
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -68,8 +68,8 @@ publish {
     userOrg = 'dovsnier'
     groupId = 'com.dvsnier'
     artifactId = 'base'
-    publishVersion = rootProject.ext.version_name
-    desc = "the android lib that version is ${rootProject.ext.version_name}"
+    publishVersion = rootProject.ext.base_version_name
+    desc = "the android lib that version is ${rootProject.ext.base_version_name}"
     website = siteUrl
     repository = gitUrl
     autoPublish = true
