@@ -1,5 +1,7 @@
 package com.dvsnier.utils;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -17,17 +19,18 @@ import java.util.List;
 
 public class JsonUtils {
 
+    public static final int DEFAULT_VALUE = -1;
     private static Gson gson;
 
     static {
         gson = new GsonBuilder().disableHtmlEscaping().create();
     }
 
-    public static <T> String obj2Json(T t) {
+    public static <T> String object2Json(T t) {
         return gson.toJson(t);
     }
 
-    public static <T> T json2Obj(String json, Class<T> clazz) {
+    public static <T> T json2Object(@NonNull String json, Class<T> clazz) {
         try {
             return gson.fromJson(json, clazz);
         } catch (JsonSyntaxException e) {
@@ -36,40 +39,39 @@ public class JsonUtils {
         }
     }
 
-    public static String getString(JSONObject json, String key) {
+    public static String getString(@NonNull JSONObject jsonObject, @NonNull String key) {
         String value = "";
         try {
-            value = json.getString(key);
+            value = jsonObject.getString(key);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return value;
     }
 
-    public static int getInt(JSONObject json, String key) {
-        int value = -1;
+    public static int getInt(@NonNull JSONObject jsonObject, @NonNull String key) {
+        int value = DEFAULT_VALUE;
         try {
-            value = json.getInt(key);
+            value = jsonObject.getInt(key);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return value;
     }
 
-    public static List<String> parseJsonToList(String jsonstr, String key) {
-        JSONObject userJson = null;
-        JSONArray arrayjson = null;
+    public static List<String> json2List(@NonNull String jsonString, @NonNull String key) {
+        JSONObject jsonObject = null;
+        JSONArray jsonArray = null;
         List<String> list = null;
-        if (jsonstr != null) {
+        //noinspection ConstantConditions
+        if (null != jsonString) {
             try {
-                userJson = new JSONObject(jsonstr);
-                String newStr = userJson.getString(key);
-                arrayjson = new JSONArray(newStr);
+                jsonObject = new JSONObject(jsonString);
+                String newStr = jsonObject.getString(key);
+                jsonArray = new JSONArray(newStr);
                 list = new ArrayList<String>();
-                for (int i = 0; i < arrayjson.length(); i++) {
-                    list.add(arrayjson.get(i).toString());
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    list.add(jsonArray.get(i).toString());
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -78,15 +80,16 @@ public class JsonUtils {
         return list;
     }
 
-    public static <T> List<?> parseJsonToList(String jsonstr, Class<T> calss) {
-        JSONArray arrayjson = null;
+    public static <T> List<T> json2List(@NonNull String jsonString, Class<T> clazz) {
+        JSONArray jsonArray = null;
         List<T> list = null;
-        if (jsonstr != null) {
+        //noinspection ConstantConditions
+        if (null != jsonString) {
             try {
-                arrayjson = new JSONArray(jsonstr);
+                jsonArray = new JSONArray(jsonString);
                 list = new ArrayList<T>();
-                for (int i = 0; i < arrayjson.length(); i++) {
-                    list.add(json2Obj(arrayjson.get(i).toString(), calss));
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    list.add(json2Object(jsonArray.get(i).toString(), clazz));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
