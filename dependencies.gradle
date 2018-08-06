@@ -14,8 +14,8 @@ ext {
     base_version_name = "0.0.2"
     common_version_code = 2
     common_version_name = "0.0.2"
-    utils_version_code = 6
-    utils_version_name = "0.0.3"
+    utils_version_code = 7
+    utils_version_name = "0.0.4"
     support_version_code = 1
     support_version_name = "0.0.1"
 

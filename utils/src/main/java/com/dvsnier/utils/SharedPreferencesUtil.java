@@ -2,6 +2,7 @@ package com.dvsnier.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 
 /**
  * SharedPreferencesUtil, easy to get or put data
@@ -30,7 +31,7 @@ import android.content.SharedPreferences;
  */
 public class SharedPreferencesUtil {
 
-    private final static String PREFERENCE_NAME = "shared_pref";
+    private static String PREFERENCE_NAME = "shared_pref";
 
     /**
      * put string preferences
@@ -243,5 +244,14 @@ public class SharedPreferencesUtil {
     public static boolean getBoolean(Context context, String key, boolean defaultValue) {
         SharedPreferences settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
         return settings.getBoolean(key, defaultValue);
+    }
+
+
+    public static String getPreferenceName() {
+        return PREFERENCE_NAME;
+    }
+
+    public static void setPreferenceName(@NonNull String preferenceName) {
+        PREFERENCE_NAME = preferenceName;
     }
 }
