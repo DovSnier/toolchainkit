@@ -15,7 +15,7 @@ public class LogUtil {
 
     protected static final String TAG = LogUtil.class.getSimpleName();
     protected static boolean isDebug = true;
-    protected final static boolean IS_DEBUG_OF_THREAD = false;
+    protected static boolean IS_DEBUG_OF_THREAD = false;
 
     /**
      * <br>
@@ -183,5 +183,21 @@ public class LogUtil {
         if (IS_DEBUG_OF_THREAD) {
             Log.w(tag, "### " + msg + " -> " + "{name: " + Thread.currentThread().getName() + " , " + "id:" + Thread.currentThread().getId() + "}");
         }
+    }
+
+    public static boolean isDebug() {
+        return isDebug;
+    }
+
+    public static void setDebug(boolean isDebug) {
+        LogUtil.isDebug = isDebug;
+    }
+
+    public static boolean isDebugOfThread() {
+        return IS_DEBUG_OF_THREAD;
+    }
+
+    public static void setDebugOfThread(boolean isDebugOfThread) {
+        IS_DEBUG_OF_THREAD = isDebugOfThread;
     }
 }
