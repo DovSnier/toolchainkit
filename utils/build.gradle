@@ -1,5 +1,5 @@
-apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.android.library'
 
 def siteUrl = 'https://github.com/DovSnier/toolchainkit.git'
 def gitUrl = 'git@github.com:DovSnier/toolchainkit.git'
