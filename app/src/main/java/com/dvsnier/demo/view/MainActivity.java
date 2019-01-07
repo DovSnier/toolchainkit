@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.dvsnier.base.task.UIRunnable;
-import com.dvsnier.base.view.ICompatV1BaseView;
+import com.dvsnier.common.compat.ICompatBaseView;
 import com.dvsnier.common.listener.IOnClickListener;
 import com.dvsnier.common.view.BaseCompatActivity;
 import com.dvsnier.demo.R;
@@ -22,7 +22,7 @@ import com.dvsnier.demo.presenter.MainPresenter;
 /**
  * MainActivity
  */
-public class MainActivity extends BaseCompatActivity<MainPresenter> implements ICompatV1BaseView, IOnClickListener {
+public class MainActivity extends BaseCompatActivity<MainPresenter> implements ICompatBaseView, IOnClickListener {
 
     private RecyclerView recyclerView;
     private MainAdapter adapter;
