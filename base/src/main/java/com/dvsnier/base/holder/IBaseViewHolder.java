@@ -4,6 +4,10 @@ import android.content.Context;
 
 /**
  * Created by lizw on 2016/5/22.
+ * <p>
+ * {@see IBaseBindViewHolder}
+ *
+ * @deprecated
  */
 public interface IBaseViewHolder {
 
