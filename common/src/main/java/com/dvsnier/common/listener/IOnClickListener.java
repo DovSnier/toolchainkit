@@ -10,5 +10,11 @@ import com.dvsnier.base.IBaseOnClickListener;
  */
 public interface IOnClickListener extends IBaseOnClickListener {
 
+    /**
+     * a simple click
+     *
+     * @param view     {@see View}
+     * @param position
+     */
     void onClick(View view, int position);
 }
