@@ -1,0 +1,15 @@
+
+# 清理，构建
+./gradlew clean build
+
+# 构建到 Maven
+./gradlew uploadArchives
+
+# 安装到本地
+./gradlew install
+
+# 发布到 Maven
+gradlew clean build publishToMavenLocal bintrayUpload -PdryRun=false
+
+# 发布 bintray
+./gradlew clean build bintrayUpload -PbintrayUser=bintray.user -PbintrayKey=bintray.apikey -PdryRun=false
