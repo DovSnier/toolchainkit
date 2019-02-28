@@ -87,7 +87,7 @@ public abstract class AbstractRecyclerViewAdapter<T, VH extends RecyclerView.Vie
     }
 
     public void remove(@NonNull T data) {
-        //noinspection ConstantConditions
+        //noinspection ConstantConditions,RedundantCollectionOperation
         if (null != data && this.dataSet.contains(data)) {
             this.dataSet.remove(data);
         }

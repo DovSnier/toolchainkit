@@ -9,7 +9,7 @@ import com.dvsnier.base.task.IRunnable;
  * view operation thread  interface
  * Created by lizw on 2016/4/6.
  */
-public interface IHandle extends IAdapter {
+public interface IHandle extends IBaseAdapter {
 
     /**
      * Return the Looper for the main thread of the current process.  This is

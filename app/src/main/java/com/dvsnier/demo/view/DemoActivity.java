@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.dvsnier.base.view.ICompatV1BaseView;
+import com.dvsnier.common.compat.ICompatBaseView;
 import com.dvsnier.demo.R;
 import com.dvsnier.demo.presenter.DemoPresenter;
 import com.dvsnier.support.view.SupportActivity;
@@ -16,7 +16,7 @@ import com.dvsnier.utils.ThreadUtil;
  * DemoActivity
  * Created by DovSnier on 2018/7/14.
  */
-public class DemoActivity extends SupportActivity<DemoPresenter> implements ICompatV1BaseView {
+public class DemoActivity extends SupportActivity<DemoPresenter> implements ICompatBaseView {
 
     private TextView content;
 
