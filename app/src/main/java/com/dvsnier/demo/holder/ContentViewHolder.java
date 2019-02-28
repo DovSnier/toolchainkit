@@ -27,7 +27,6 @@ public class ContentViewHolder extends BaseViewHolder<MainBean> {
     LinearLayout container;
     @BindView(R.id.content)
     TextView content;
-    protected IOnClickListener onClickListener;
 
     public ContentViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -35,8 +34,8 @@ public class ContentViewHolder extends BaseViewHolder<MainBean> {
     }
 
     public ContentViewHolder(@NonNull Context context, int LayoutId, ViewGroup parent) {
-//        super(context, LayoutId, parent);
-        super(context, R.layout.view_holder_content, parent);
+        super(context, LayoutId, parent);
+//        super(context, R.layout.view_holder_content, parent);
         ButterKnife.bind(this, itemView);
     }
 
@@ -53,18 +52,11 @@ public class ContentViewHolder extends BaseViewHolder<MainBean> {
             content.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (null != onClickListener) {
-                        onClickListener.onClick(v, position);
+                    if (null != getOnClickListener() && getOnClickListener() instanceof IOnClickListener) {
+                        ((IOnClickListener) getOnClickListener()).onClick(v, position);
                     }
                 }
             });
-        }
-    }
-
-    @Override
-    public void setOnClickListener(IBaseOnClickListener onClickListener) {
-        if (null != onClickListener && onClickListener instanceof IOnClickListener) {
-            this.onClickListener = (IOnClickListener) onClickListener;
         }
     }
 }
