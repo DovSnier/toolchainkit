@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import java.util.List;
 
 /**
+ * BaseRecycleViewAdapter
  * Created by lizw on 2016/5/18.
  */
 public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHolder> extends AbstractRecyclerViewAdapter<T, RecyclerView.ViewHolder> {

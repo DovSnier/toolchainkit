@@ -3,11 +3,11 @@
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.dvsnier.base.view.ICompatV1BaseView;
+import com.dvsnier.common.compat.ICompatBaseView;
 import com.dvsnier.common.view.BaseCompatActivity;
 
 #parse("MVP File Header.java")
-public class ${NAME} extends BaseCompatActivity<${Presenter_Name}> implements ICompatV1BaseView {
+public class ${NAME} extends BaseCompatActivity<${Presenter_Name}> implements ICompatBaseView {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
