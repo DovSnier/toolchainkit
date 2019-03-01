@@ -5,10 +5,10 @@ apply from: 'dependencies.gradle'
 buildscript {
 
     repositories {
-        jcenter()
-        google()
         mavenLocal()
         mavenCentral()
+        google()
+        jcenter()
 //        maven {
 //            url MAVEN_REPO_URL
 //        }
@@ -26,10 +26,10 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
-        google()
-        mavenLocal()
         mavenCentral()
+        mavenLocal()
+        google()
+        jcenter()
 //        maven {
 //            url MAVEN_REPO_URL
 //        }
