@@ -17,7 +17,7 @@ ext {
     utils_version_code = 7
     utils_version_name = "0.0.4"
     support_version_code = 1
-    support_version_name = "0.0.1"
+    support_version_name = "0.0.2"
 
     // support SDK 配置
     support_appcompat_version = "26.0.0-alpha1"

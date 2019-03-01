@@ -24,9 +24,12 @@ dependencies {
     //noinspection GradleDependency
     implementation "com.android.support:appcompat-v7:${rootProject.ext.support_appcompat_version}"
     implementation "com.android.support:recyclerview-v7:${rootProject.ext.support_recyclerview_version}"
-    implementation project(':common')
-    implementation project(':support')
-    implementation project(':utils')
+//    implementation project(':common')
+//    implementation project(':support')
+//    implementation project(':utils')
+    implementation 'com.dvsnier:common:0.0.3'
+    implementation 'com.dvsnier:support-v1:0.0.2'
+    implementation 'com.dvsnier:utils:0.0.4'
     debugImplementation 'com.dvsnier:crash:0.0.4'
     releaseImplementation 'com.dvsnier:crash-no:0.0.4'
     implementation 'com.facebook.stetho:stetho:1.5.0'
