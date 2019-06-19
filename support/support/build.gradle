@@ -30,7 +30,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':base')
+    implementation project(path: ':library:base')
     //noinspection GradleDependency
     implementation "com.android.support:appcompat-v7:${rootProject.ext.support_appcompat_version}"
     //noinspection GradleDependency
