@@ -1,0 +1,14 @@
+#base
+./gradlew :base:clean :base:build :base:publishToMavenLocal
+./gradlew :base:bintrayUpload -PbintrayUser=BINTRAY_USER -PbintrayKey=BINTRAY_API_KEY -PdryRun=false
+./gradlew :base:clean :base:build :base:bintrayUpload -PbintrayUser=BINTRAY_USER -PbintrayKey=BINTRAY_API_KEY -PdryRun=false
+
+#common
+./gradlew :common:clean :common:build :common:publishToMavenLocal
+./gradlew :common:bintrayUpload -PbintrayUser=BINTRAY_USER -PbintrayKey=BINTRAY_API_KEY -PdryRun=false
+./gradlew :common:clean :common:build :common:bintrayUpload -PbintrayUser=BINTRAY_USER -PbintrayKey=BINTRAY_API_KEY -PdryRun=false
+
+#support
+./gradlew :support:clean :support:build :support:publishToMavenLocal
+./gradlew :support:bintrayUpload -PbintrayUser=BINTRAY_USER -PbintrayKey=BINTRAY_API_KEY -PdryRun=false
+./gradlew :support:clean :support:build :support:bintrayUpload -PbintrayUser=BINTRAY_USER -PbintrayKey=BINTRAY_API_KEY -PdryRun=false
