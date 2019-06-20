@@ -4,7 +4,8 @@ include ':app',
 include ':library:base',
         'library:common'
 
-include ':support:support'
+include ':support:support',
+        ':support:support_v2'
 
 include ':tools:utils',
         ':tools:template'
