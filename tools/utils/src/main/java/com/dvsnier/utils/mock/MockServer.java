@@ -1,4 +1,4 @@
-package com.dvsnier.utils;
+package com.dvsnier.utils.mock;
 
 import android.content.Context;
 import android.content.res.AssetManager;

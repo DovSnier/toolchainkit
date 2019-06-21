@@ -1,8 +1,10 @@
-package com.dvsnier.utils;
+package com.dvsnier.utils.mock;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import com.dvsnier.utils.JsonUtils;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.dvsnier.utils;
+package com.dvsnier.utils.runnable;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingDeque;
