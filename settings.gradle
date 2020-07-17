@@ -1,1 +1,13 @@
-include ':app', ':utils', ':base', ':javaKit', ':common', ':support'
+include ':app',
+        ':document'
+
+include ':library:base',
+        'library:common'
+
+include ':support:support',
+        ':support:support_v2'
+
+include ':tools:utils',
+        ':tools:template'
+
+include ':java:javaKit'
