@@ -1,4 +1,4 @@
-package com.dvsnier.demo.adapter;
+package com.dvsnier.toolchain.demo.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -6,9 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.dvsnier.base.adapter.BaseRecyclerViewAdapter;
-import com.dvsnier.demo.R;
-import com.dvsnier.demo.bean.MainBean;
-import com.dvsnier.demo.holder.ContentViewHolder;
+import com.dvsnier.toolchain.demo.R;
+import com.dvsnier.toolchain.demo.bean.MainBean;
+import com.dvsnier.toolchain.demo.holder.ContentViewHolder;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.dvsnier.demo.holder;
+package com.dvsnier.toolchain.demo.holder;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,11 +8,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.dvsnier.base.IBaseOnClickListener;
 import com.dvsnier.base.holder.BaseViewHolder;
 import com.dvsnier.common.listener.IOnClickListener;
-import com.dvsnier.demo.R;
-import com.dvsnier.demo.bean.MainBean;
+import com.dvsnier.toolchain.demo.R;
+import com.dvsnier.toolchain.demo.bean.MainBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

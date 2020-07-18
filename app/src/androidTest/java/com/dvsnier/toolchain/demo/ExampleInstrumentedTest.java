@@ -1,4 +1,4 @@
-package com.dvsnier.demo;
+package com.dvsnier.toolchain.demo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

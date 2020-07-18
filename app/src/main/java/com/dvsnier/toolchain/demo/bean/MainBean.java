@@ -1,4 +1,4 @@
-package com.dvsnier.demo.bean;
+package com.dvsnier.toolchain.demo.bean;
 
 import com.dvsnier.base.bean.BaseBean;
 

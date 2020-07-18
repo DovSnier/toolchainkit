@@ -1,4 +1,4 @@
-package com.dvsnier.demo.view;
+package com.dvsnier.toolchain.demo.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.dvsnier.common.compat.ICompatBaseView;
-import com.dvsnier.demo.R;
-import com.dvsnier.demo.presenter.DemoPresenter;
+import com.dvsnier.toolchain.demo.R;
+import com.dvsnier.toolchain.demo.presenter.DemoPresenter;
 import com.dvsnier.support.view.SupportActivity;
 import com.dvsnier.utils.ThreadUtil;
 

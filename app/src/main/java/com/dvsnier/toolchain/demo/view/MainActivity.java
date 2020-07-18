@@ -1,4 +1,4 @@
-package com.dvsnier.demo.view;
+package com.dvsnier.toolchain.demo.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +15,9 @@ import com.dvsnier.base.task.UIRunnable;
 import com.dvsnier.common.compat.ICompatBaseView;
 import com.dvsnier.common.listener.IOnClickListener;
 import com.dvsnier.common.view.BaseCompatActivity;
-import com.dvsnier.demo.R;
-import com.dvsnier.demo.adapter.MainAdapter;
-import com.dvsnier.demo.presenter.MainPresenter;
+import com.dvsnier.toolchain.demo.R;
+import com.dvsnier.toolchain.demo.adapter.MainAdapter;
+import com.dvsnier.toolchain.demo.presenter.MainPresenter;
 
 /**
  * MainActivity

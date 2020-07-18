@@ -1,4 +1,4 @@
-package com.dvsnier.demo;
+package com.dvsnier.toolchain.demo.application;
 
 import android.app.Application;
 

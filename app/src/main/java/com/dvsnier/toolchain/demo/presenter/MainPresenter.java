@@ -1,11 +1,11 @@
-package com.dvsnier.demo.presenter;
+package com.dvsnier.toolchain.demo.presenter;
 
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.dvsnier.common.presenter.BaseCompatPresenter;
-import com.dvsnier.demo.bean.MainBean;
-import com.dvsnier.demo.view.MainActivity;
+import com.dvsnier.toolchain.demo.bean.MainBean;
+import com.dvsnier.toolchain.demo.view.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
