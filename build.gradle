@@ -5,6 +5,7 @@ apply from: 'dependencies.gradle'
 buildscript {
 
     repositories {
+        maven { url "https://maven.aliyun.com/repository/public" }
         mavenLocal()
         mavenCentral()
         google()
@@ -26,6 +27,7 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url "https://maven.aliyun.com/repository/public" }
         mavenCentral()
         mavenLocal()
         google()
