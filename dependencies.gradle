@@ -14,12 +14,16 @@ ext {
     base_version_name = "0.0.3"
     common_version_code = 3
     common_version_name = "0.0.3"
+    document_version_code = 1
+    document_version_name = "0.0.1"
     utils_version_code = 7
     utils_version_name = "0.0.4"
     support_version_code = 1
     support_version_name = "0.0.2"
     support_v2_version_code = 1
     support_v2_version_name = "0.0.1"
+    templete_version_code = 1
+    templete_version_name = "0.0.1"
 
     // support SDK 配置
     support_appcompat_version = "28.0.0"
