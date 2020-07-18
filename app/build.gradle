@@ -7,8 +7,8 @@ android {
         applicationId "com.dvsnier.demo.toolchain"
         minSdkVersion rootProject.ext.min_sdk_version
         targetSdkVersion rootProject.ext.target_sdk_version
-        versionCode 2
-        versionName "1.0.1"
+        versionCode rootProject.ext.app_version_code
+        versionName rootProject.ext.app_version_name
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -24,21 +24,28 @@ dependencies {
     //noinspection GradleDependency
     implementation "com.android.support:appcompat-v7:${rootProject.ext.support_appcompat_version}"
     implementation "com.android.support:recyclerview-v7:${rootProject.ext.support_recyclerview_version}"
+
+//    the component test list
 //    implementation project(':common')
 //    implementation project(':support')
 //    implementation project(':utils')
+
+    // the component dependencies test list
     implementation 'com.dvsnier:common:0.0.3'
     implementation 'com.dvsnier:support-v1:0.0.2'
     implementation 'com.dvsnier:utils:0.0.4'
-    debugImplementation 'com.dvsnier:crash:0.0.4'
-    releaseImplementation 'com.dvsnier:crash-no:0.0.4'
-    implementation 'com.facebook.stetho:stetho:1.5.0'
-    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+    debugImplementation "com.dvsnier:crash:${rootProject.ext.crash_version}"
+    releaseImplementation "com.dvsnier:crash-no:${rootProject.ext.crash_version}"
+    implementation "com.facebook.stetho:stetho:${rootProject.ext.stetho_version}"
+    implementation "com.facebook.stetho:stetho-okhttp3:${rootProject.ext.stetho_okhttp3_version}"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${rootProject.ext.leakcanary_android_version}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${rootProject.ext.leakcanary_android_no_op_version}"
+
     testImplementation "junit:junit:${rootProject.ext.junit_version}"
     androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runner_version}"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espresso_core_version}"
+
     implementation "com.jakewharton:butterknife:${rootProject.ext.butterknife_version}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterknife_version}"
 }
