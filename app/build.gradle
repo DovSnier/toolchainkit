@@ -26,14 +26,14 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:${rootProject.ext.support_recyclerview_version}"
 
 //    the component test list
-//    implementation project(':common')
-//    implementation project(':support')
-//    implementation project(':utils')
+    implementation project(':library:common')
+    implementation project(':support:support')
+    implementation project(':tools:utils')
 
     // the component dependencies test list
-    implementation 'com.dvsnier:common:0.0.3'
-    implementation 'com.dvsnier:support-v1:0.0.2'
-    implementation 'com.dvsnier:utils:0.0.4'
+//    implementation 'com.dvsnier:common:0.0.3'
+//    implementation 'com.dvsnier:support-v1:0.0.2'
+//    implementation 'com.dvsnier:utils:0.0.4'
 
     debugImplementation "com.dvsnier:crash:${rootProject.ext.crash_version}"
     releaseImplementation "com.dvsnier:crash-no:${rootProject.ext.crash_version}"

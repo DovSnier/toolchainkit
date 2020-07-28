@@ -7,3 +7,56 @@
 - support   // 非公共性质的不同版本代码库
 - support-v1 // 兼容库
 - support-v2 // 兼容库
+- utils     // 工具库
+
+
+## 仓库
+
+### 镜像仓库
+
+- https://maven.aliyun.com/mvn/guide
+
+### 查询仓库
+
+- https://maven.aliyun.com/mvn/search
+
+```Django
+group-id: com.android.support
+artifact-id: support-annotations
+version: xxx
+```
+
+## 依赖
+
+参考如下命令:
+
+```Django
+// 参考地址:
+https://blog.csdn.net/DovSnier/article/details/91875631
+
+// 单节点
+./gradlew -q :app:dependencies --configuration implementation > dependencies.txt
+./gradlew -q :library:base:dependencies --configuration implementation > dependencies.txt
+./gradlew -q :library:common:dependencies --configuration implementation > dependencies.txt
+./gradlew -q :support:support:dependencies --configuration implementation > dependencies.txt
+./gradlew -q :support:support_v2:dependencies --configuration implementation > dependencies.txt
+./gradlew -q :tools:utils:dependencies --configuration implementation > dependencies.txt
+
+// 完整性
+./gradlew -q :app:dependencies --configuration debugCompileClasspath > dependencies.txt
+./gradlew -q :library:base:dependencies --configuration debugCompileClasspath > dependencies.txt
+./gradlew -q :library:common:dependencies --configuration debugCompileClasspath > dependencies.txt
+./gradlew -q :support:support:dependencies --configuration debugCompileClasspath > dependencies.txt
+./gradlew -q :support:support_v2:dependencies --configuration debugCompileClasspath > dependencies.txt
+./gradlew -q :tools:utils:dependencies --configuration debugCompileClasspath > dependencies.txt
+
+// component recyclerview-v7
+./gradlew -q :app:dependencyInsight --configuration debugCompileClasspath --dependency recyclerview-v7 > dependencies.txt
+./gradlew -q :app:dependencyInsight --configuration debugCompileClasspath --dependency recyclerview-v7 > dependencies.txt
+./gradlew -q :library:base:dependencyInsight --configuration debugCompileClasspath --dependency recyclerview-v7 > dependencies.txt
+./gradlew -q :library:common:dependencyInsight --configuration debugCompileClasspath --dependency recyclerview-v7 > dependencies.txt
+./gradlew -q :support:support:dependencyInsight --configuration debugCompileClasspath --dependency recyclerview-v7 > dependencies.txt
+./gradlew -q :support:support_v2:dependencyInsight --configuration debugCompileClasspath --dependency recyclerview-v7 > dependencies.txt
+./gradlew -q :tools:utils:dependencyInsight --configuration debugCompileClasspath --dependency recyclerview-v7 > dependencies.txt
+
+```
