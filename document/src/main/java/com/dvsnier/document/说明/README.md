@@ -50,6 +50,12 @@ https://blog.csdn.net/DovSnier/article/details/91875631
 ./gradlew -q :support:support_v2:dependencies --configuration debugCompileClasspath > dependencies.txt
 ./gradlew -q :tools:utils:dependencies --configuration debugCompileClasspath > dependencies.txt
 
+// Android dependencies
+./gradlew -q --warning-mode all androidDependencies > dependencies.txt
+./gradlew -q :app:dependencies > dependencies.txt
+./gradlew -q :app:dependencies --configuration debugCompileClasspath > dependencies.txt
+./gradlew -q :app:dependencies :library:base:dependencies :library:common:dependencies --configuration debugCompileClasspath > dependencies.txt
+
 // component recyclerview-v7
 ./gradlew -q :app:dependencyInsight --configuration debugCompileClasspath --dependency recyclerview-v7 > dependencies.txt
 ./gradlew -q :app:dependencyInsight --configuration debugCompileClasspath --dependency recyclerview-v7 > dependencies.txt

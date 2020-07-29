@@ -46,9 +46,15 @@ dependencies {
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${rootProject.ext.leakcanary_android_no_op_version}"
 
     testImplementation "junit:junit:${rootProject.ext.junit_version}"
-    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runner_version}"
+    androidTestImplementation("com.android.support.test:runner:${rootProject.ext.runner_version}") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support.test', module: 'monitor'
+    }
     androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espresso_core_version}"
 
-    implementation "com.jakewharton:butterknife:${rootProject.ext.butterknife_version}"
+    implementation("com.jakewharton:butterknife:${rootProject.ext.butterknife_version}") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-compat'
+    }
     annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterknife_version}"
 }

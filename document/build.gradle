@@ -25,6 +25,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.support_appcompat_version}"
     testImplementation "junit:junit:${rootProject.ext.junit_version}"
-    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runner_version}"
+    androidTestImplementation("com.android.support.test:runner:${rootProject.ext.runner_version}") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support.test', module: 'monitor'
+    }
     androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espresso_core_version}"
 }
