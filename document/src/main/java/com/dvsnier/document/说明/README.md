@@ -65,4 +65,31 @@ https://blog.csdn.net/DovSnier/article/details/91875631
 ./gradlew -q :support:support_v2:dependencyInsight --configuration debugCompileClasspath --dependency recyclerview-v7 > dependencies.txt
 ./gradlew -q :tools:utils:dependencyInsight --configuration debugCompileClasspath --dependency recyclerview-v7 > dependencies.txt
 
+
+    :app
+    :document
+    :library:base
+    :library:common
+    :support:support
+    :support:support_v2
+    :tools:utils
+    :tools:template
+    :java:javaKit
+```  
+
+### 举例
+
+脚本参考:
+
+```
+    ./gradlew :app:dependencies :document:dependencies :library:base:dependencies :library:common:dependencies :support:support:dependencies :support:support_v2:dependencies :tools:utils:dependencies :tools:template:dependencies --configuration debugCompileClasspath > dependencies.txt
+    
+    ./gradlew :app:dependencies --configuration debugCompileClasspath > dependencies.txt 
+    ./gradlew :document:dependencies --configuration debugCompileClasspath > dependencies.txt 
+    ./gradlew :library:base:dependencies --configuration debugCompileClasspath > dependencies.txt 
+    ./gradlew :library:common:dependencies --configuration debugCompileClasspath > dependencies.txt 
+    ./gradlew :support:support:dependencies --configuration debugCompileClasspath > dependencies.txt 
+    ./gradlew :support:support_v2:dependencies --configuration debugCompileClasspath > dependencies.txt 
+    ./gradlew :tools:utils:dependencies --configuration debugCompileClasspath > dependencies.txt 
+    ./gradlew :tools:template:dependencies --configuration debugCompileClasspath > dependencies.txt
 ```
