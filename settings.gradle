@@ -10,4 +10,6 @@ include ':support:support',
 include ':tools:utils',
         ':tools:template'
 
+include ':component:config'
+
 include ':java:javaKit'
