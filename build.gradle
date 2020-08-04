@@ -45,6 +45,14 @@ allprojects {
         if (!log.exists()) {
             log.mkdir()
         }
+        file("./log/project_task_list.log").withWriter { w ->
+            w.write("the project property:\n\n")
+            project.properties.each {
+                w.write(it.getKey() + "\n")
+//                w.write(it.getValue() + "\n")
+            }
+            w.close()
+        }
     }
 
     gradle.projectsEvaluated {

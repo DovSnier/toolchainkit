@@ -1,6 +1,7 @@
 
 ## 说明
 
+- component // 组件库
 - document // 文档库
 - base  // 技术代码库
 - common    // 业务代码库
