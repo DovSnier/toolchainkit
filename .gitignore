@@ -27,6 +27,8 @@ proguard/
 
 # Log Files
 *.log
+log/
+record/
 
 #IntelliJ IDEA
 .idea/
@@ -52,3 +54,4 @@ gradle-app.setting
 
 # dependencies files
 dependencies.txt
+dependencies/

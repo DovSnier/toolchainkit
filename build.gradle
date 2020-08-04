@@ -41,11 +41,21 @@ allprojects {
         if (project.getTasksByName("releaseAndroidJavadocs", false).size() > 0) {
             project.getTasksByName("releaseAndroidJavadocs", false)[0].enabled = false
         }
+        def log = new File("./log")
+        if (!log.exists()) {
+            log.mkdir()
+        }
     }
 
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
             options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+        file("./log/gradle_task_list.txt").withWriter { w ->
+            tasks.forEach() {
+                w.write(it.getName() + "\n")
+            }
+            w.close()
         }
     }
 
