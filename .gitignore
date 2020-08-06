@@ -27,6 +27,8 @@ proguard/
 
 # Log Files
 *.log
+log/
+record/
 
 #IntelliJ IDEA
 .idea/
@@ -49,3 +51,7 @@ freeline_core/
 freeline.py
 freeline_project_description.json
 gradle-app.setting
+
+# dependencies files
+dependencies.txt
+dependencies/

@@ -1,5 +1,5 @@
-apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
@@ -7,16 +7,18 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.min_sdk_version
         targetSdkVersion rootProject.ext.target_sdk_version
-        versionCode rootProject.ext.support_version_code
-        versionName rootProject.ext.support_version_name
+        versionCode rootProject.ext.config_version_code
+        versionName rootProject.ext.config_version_name
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -27,16 +29,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':library:base')
-    //noinspection GradleDependency
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.support_appcompat_version}"
-    //noinspection GradleDependency
-    implementation "com.android.support:support-annotations:${rootProject.ext.support_annotations_version}"
+
+
+//    implementation "com.android.support:appcompat-v7:${rootProject.ext.support_appcompat_version}"
+//    implementation "com.android.support:support-annotations:${rootProject.ext.support_annotations_version}"
+
     testImplementation "junit:junit:${rootProject.ext.junit_version}"
-    androidTestImplementation("com.android.support.test:runner:${rootProject.ext.runner_version}") {
-        exclude group: 'com.android.support', module: 'support-annotations'
-        exclude group: 'com.android.support.test', module: 'monitor'
-    }
+
+    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runner_version}"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espresso_core_version}"
 }
 
@@ -69,9 +69,9 @@ publish {
     repoName = 'AndroidComponent'
     userOrg = 'dovsnier'
     groupId = 'com.dvsnier'
-    artifactId = 'support-v1'
-    publishVersion = rootProject.ext.support_version_name
-    desc = "the android lib that version is ${rootProject.ext.support_version_name}"
+    artifactId = 'config'
+    publishVersion = rootProject.ext.config_version_name
+    desc = "the android lib that version is ${rootProject.ext.config_version_name}"
     website = REPOSITORY_SITE_URL
     repository = REPOSITORY_GIT_URL
     autoPublish = true

@@ -1,7 +1,7 @@
 package com.dvsnier.template.templates
 
-apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 def siteUrl = 'https://github.com/DovSnier/toolchainkit.git'
 def gitUrl = 'git@github.com:DovSnier/toolchainkit.git'
@@ -16,12 +16,14 @@ android {
         versionName rootProject.ext.XXX_version_name // todo XXX name
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
