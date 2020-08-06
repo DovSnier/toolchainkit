@@ -1,9 +1,6 @@
 apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.android.library'
 
-def siteUrl = 'https://github.com/DovSnier/toolchainkit.git'
-def gitUrl = 'git@github.com:DovSnier/toolchainkit.git'
-
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
 
@@ -75,8 +72,8 @@ publish {
     artifactId = 'support-v1'
     publishVersion = rootProject.ext.support_version_name
     desc = "the android lib that version is ${rootProject.ext.support_version_name}"
-    website = siteUrl
-    repository = gitUrl
+    website = REPOSITORY_SITE_URL
+    repository = REPOSITORY_GIT_URL
     autoPublish = true
     bintrayUser = user
     bintrayKey = key

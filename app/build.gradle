@@ -32,6 +32,7 @@ dependencies {
 
     // the component dependencies test list
 //    implementation 'com.dvsnier:common:0.0.3'
+//    implementation 'com.dvsnier:config:0.0.1'
 //    implementation 'com.dvsnier:support-v1:0.0.2'
 //    implementation 'com.dvsnier:utils:0.0.4'
 
