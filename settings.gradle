@@ -2,14 +2,14 @@ include ':app',
         ':document'
 
 include ':library:base',
-        'library:common'
+        ':library:common'
+
+include ':component:config'
 
 include ':support:support',
         ':support:support_v2'
 
 include ':tools:utils',
         ':tools:template'
-
-include ':component:config'
 
 include ':java:javaKit'
