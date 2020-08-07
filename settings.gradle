@@ -1,5 +1,8 @@
 include ':app',
-        ':document'
+        ':document',
+        ':log'
+
+project(':log').projectDir = file('log')
 
 include ':library:base',
         ':library:common'

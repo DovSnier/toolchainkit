@@ -32,6 +32,14 @@ dependencies {
 
 //    implementation "com.android.support:support-annotations:${rootProject.ext.support_annotations_version}"
 
+    implementation("com.android.support:support-v4:$rootProject.support_v4_version") {
+//        exclude group: 'com.android.support', module: 'support-compat'
+        exclude group: 'com.android.support', module: 'support-media-compat'
+        exclude group: 'com.android.support', module: 'support-core-utils'
+        exclude group: 'com.android.support', module: 'support-core-ui'
+        exclude group: 'com.android.support', module: 'support-fragment'
+    }
+
     testImplementation "junit:junit:${rootProject.ext.junit_version}"
 
     androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runner_version}"
