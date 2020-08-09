@@ -5,6 +5,7 @@
   - [1.2. common](#12-common)
 - [二. component](#二-component)
   - [2.1. config](#21-config)
+  - [2.2. permission](#22-permission)
 - [三. support](#三-support)
   - [3.1. support](#31-support)
   - [3.2. support-v1](#32-support-v1)
@@ -54,6 +55,16 @@ implementation 'com.dvsnier:common:0.0.3'
 
 ```gradle
 implementation 'com.dvsnier:config:0.0.1'
+```
+
+- ...
+
+### 2.2. permission
+
+> Long Term Support，LTS
+
+```gradle
+implementation 'com.dvsnier:permission:0.0.1'
 ```
 
 - ...
