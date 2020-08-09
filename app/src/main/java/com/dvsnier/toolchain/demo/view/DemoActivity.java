@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.dvsnier.common.compat.ICompatBaseView;
+import com.dvsnier.support.view.SupportActivity;
 import com.dvsnier.toolchain.demo.R;
 import com.dvsnier.toolchain.demo.presenter.DemoPresenter;
-import com.dvsnier.support.view.SupportActivity;
-import com.dvsnier.utils.ThreadUtil;
+import com.dvsnier.utils.runnable.ThreadUtil;
 
 /**
  * DemoActivity
