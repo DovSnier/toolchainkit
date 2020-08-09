@@ -27,6 +27,7 @@ dependencies {
 
 //    the component test list
     implementation project(':library:common')
+    implementation project(':component:permission')
     implementation project(':support:support')
     implementation project(':tools:utils')
 

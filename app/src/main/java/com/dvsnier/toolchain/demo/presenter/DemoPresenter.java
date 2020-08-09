@@ -3,11 +3,11 @@ package com.dvsnier.toolchain.demo.presenter;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.dvsnier.toolchain.demo.view.DemoActivity;
 import com.dvsnier.support.presenter.SupportPresenter;
+import com.dvsnier.toolchain.demo.view.DemoActivity;
 import com.dvsnier.utils.LogUtil;
-import com.dvsnier.utils.ThreadUtil;
-import com.dvsnier.utils.UiThreadUtil;
+import com.dvsnier.utils.runnable.ThreadUtil;
+import com.dvsnier.utils.runnable.UiThreadUtil;
 
 /**
  * DemoPresenter

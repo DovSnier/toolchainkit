@@ -41,11 +41,12 @@ allprojects {
         if (project.getTasksByName("releaseAndroidJavadocs", false).size() > 0) {
             project.getTasksByName("releaseAndroidJavadocs", false)[0].enabled = false
         }
-        def log = new File("./log")
-        if (!log.exists()) {
-            log.mkdir()
-        }
-        file("./log/project_task_list.log").withWriter { w ->
+        def log = new File("./log/src/main/java")
+//        if (!log.exists()) {
+//            log.mkdirs()
+//        }
+        log.mkdirs()
+        file("./log/src/main/java/project_task_list.log").withWriter { w ->
             w.write("the project property:\n\n")
             project.properties.each {
                 w.write(it.getKey() + "\n")
@@ -59,7 +60,7 @@ allprojects {
         tasks.withType(JavaCompile) {
             options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
         }
-        file("./log/gradle_task_list.txt").withWriter { w ->
+        file("./log/src/main/java/gradle_task_list.txt").withWriter { w ->
             tasks.forEach() {
                 w.write(it.getName() + "\n")
             }

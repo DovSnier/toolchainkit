@@ -1,10 +1,14 @@
 include ':app',
-        ':document'
+        ':document',
+        ':log'
+
+project(':log').projectDir = file('log')
 
 include ':library:base',
         ':library:common'
 
-include ':component:config'
+include ':component:config',
+        ':component:permission'
 
 include ':support:support',
         ':support:support_v2'

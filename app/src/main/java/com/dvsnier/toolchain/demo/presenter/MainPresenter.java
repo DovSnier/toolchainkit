@@ -34,6 +34,12 @@ public class MainPresenter extends BaseCompatPresenter<MainActivity> {
                 case 3:
                     bean.setText("3. 测试3s 延迟 Post");
                     break;
+                case 4:
+                    bean.setText("4. 测试权限请求");
+                    break;
+                case 5:
+                    bean.setText("5. 测试多个权限请求");
+                    break;
                 default:
                     bean.setText(String.format("%s. Test Data", i));
                     break;
