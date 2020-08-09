@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">toolchainKit</string>
+    <string name="mime_type">TYPE_TEXT</string>
 </resources>
