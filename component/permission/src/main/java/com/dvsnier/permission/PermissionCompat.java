@@ -1,9 +1,14 @@
 package com.dvsnier.permission;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.text.TextUtils;
+
+import com.dvsnier.cfg.Attribute;
+import com.dvsnier.cfg.IConfigApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +17,7 @@ import java.util.List;
  * PermissionCompat
  * Created by dovsnier on 2020/7/28.
  */
-public class PermissionCompat implements IOnRequestPermissionListener, ITag {
+public class PermissionCompat implements IOnRequestPermissionListener, ITag, IConfigApi {
 
     protected Context context;
     protected PermissionFragment permissionFragment;
@@ -22,6 +27,31 @@ public class PermissionCompat implements IOnRequestPermissionListener, ITag {
 
     public PermissionCompat(Context context) {
         setContext(context);
+    }
+
+    @Override
+    public void onSdkCallback(Context context) {
+        if (null != context) {
+            SharedPreferences sharedPreferences = context.getSharedPreferences(SDK_FILE_NAME, Context.MODE_PRIVATE);
+            if (null != sharedPreferences) {
+                SharedPreferences.Editor edit = sharedPreferences.edit();
+                if (null != edit) {
+                    Attribute attribute = new Attribute.Builder("permission")
+                            .setBuildType(BuildConfig.BUILD_TYPE)
+                            .setFirstTime(String.valueOf(System.currentTimeMillis()))
+                            .setRecentlyTime(String.valueOf(System.currentTimeMillis()))
+                            .setVersionName(BuildConfig.VERSION_NAME)
+                            .create();
+                    edit.putString(attribute.getKeyOfBuildType(), attribute.getValueOfBuildType());
+                    if (TextUtils.isEmpty(sharedPreferences.getString(attribute.getKeyOfFirstTime(), ""))) {
+                        edit.putString(attribute.getKeyOfFirstTime(), attribute.getValueOfFirstTime());
+                    }
+                    edit.putString(attribute.getKeyOfRecentlyTime(), attribute.getValueOfRecentlyTime());
+                    edit.putString(attribute.getKeyOfVersionName(), attribute.getValueOfVersionName());
+                    edit.apply();
+                }
+            }
+        }
     }
 
     @Override
@@ -141,6 +171,7 @@ public class PermissionCompat implements IOnRequestPermissionListener, ITag {
 
     public void setContext(Context context) {
         this.context = context;
+        onSdkCallback(context);
         obtainSingleFragment(context);
     }
 
